@@ -1,0 +1,203 @@
+﻿@model BugTracker.Models.Project
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Project Details and User Assigment</h2>
+
+
+
+@*<div>
+    <h4>Project</h4>
+    <hr />
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+    </dl>
+</div>
+
+@using (Html.BeginForm("ManageProjectUsers", "Admin", FormMethod.Post))
+{
+
+    @Html.AntiForgeryToken()
+    @Html.Hidden("ProjectId", Model.Id)
+
+    <div class=" row">
+        <div class=" col-md-4 text-center">
+            <h2>Project Managers</h2>
+            @Html.ListBox("ProjectManagers")
+        </div>
+
+        <div class=" col-md-4 text-center">
+            <h2>Developers</h2>
+            @Html.ListBox("Developers")
+        </div>
+
+        <div class=" col-md-4 text-center">
+            <h2>Submitters</h2>
+            @Html.ListBox("Submitters")
+        </div>
+
+
+    </div>
+
+
+
+    <div class=" row">
+        <div class=" col-md-12 text-center">
+            <button type="submit" class=" btn btn-primary btn-lg">Assign</button>
+        </div>
+    </div>
+}
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+-----------------------------------------------------------------------------------------------*@
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    INDIVIDUAL PROJECT DETAILS
+                    AREA TO ASSIGN USER TO INDIVIDUAL PROJECT
+                    <small>Make necessary changes to user, assign to project and save.</small>
+                </h2>
+                </br>
+                </br>
+
+                <div class="body table-responsive">
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr class="danger">
+                                <th>#</th>
+                                <th>
+                                    @Html.DisplayName("Name")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Description")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Created")
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>
+                                    @Html.DisplayFor(model => model.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.Description)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.Created)
+                                </td>
+                            </tr>
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="body table-responsive">
+                    <table class=" table table-condensed">
+                        <thead>
+                            <tr class="danger">
+
+                                <th>
+                                    @Html.DisplayName("PROJECT MANAGER")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("DEVELOPER")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("SUBMITTER")
+                                </th>
+                            </tr>
+                        </thead>
+                    </div>
+                </div>
+
+                        @using (Html.BeginForm("ManageProjectUsers", "Admin", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("ProjectId", Model.Id)
+                            <div class="body table-responsive">
+                                <table class=" table table-condensed">
+                                    @*<thead>
+                                        <tr class="danger">
+
+                                            <th>
+                                                @Html.DisplayName("PROJECT MANAGER")
+                                            </th>
+                                            <th>
+                                                @Html.DisplayName("DEVELOPER")
+                                            </th>
+                                            <th>
+                                                @Html.DisplayName("SUBMITTER")
+                                            </th>
+                                        </tr>
+                                    </thead>*@
+                                    <tbody>
+                                        <div class=" row">
+                                            <div class="col-md-pull-0 col-md-4">
+                                                @Html.ListBox("ProjectManagers")
+                                            </div>
+                                            <div class="col-md-offset-0 col-md-4">
+                                                @Html.ListBox("Developers")
+                                            </div>
+                                            <div class="col-md-offset-0 col-md-4">
+                                                @Html.ListBox("Submitters")
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-offset-5">
+                                                    <input type="submit" value="Assign" class="btn bg-teal" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                        }
+                </div>
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+                    @Html.ActionLink("Back to List", "Index")
+                </p>
+
+            </div>
+    </div>
+</div>
+

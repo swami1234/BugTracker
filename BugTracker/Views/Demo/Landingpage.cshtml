@@ -1,0 +1,276 @@
+﻿
+
+
+
+
+@{
+    Layout = null;
+}
+@*@{
+        ViewBag.Title = "Login";
+    }*@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>WELCOME TO MY BUG-TRACKER PROJECT</title>
+    <!-- Favicon-->
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    <!-- Bootstrap Core Css -->
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <!-- Waves Effect Css -->
+
+    <link href="~/Content/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+
+    <link href="~/Content/animate.css" rel="stylesheet" />
+
+    <!-- Sweet Alert Css -->
+
+    <link href="~/Content/sweetalert.css" rel="stylesheet" />
+
+
+    <!-- Custom Css -->
+
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+
+
+    <link href="~/Content/all-themes.css" rel="stylesheet" />
+</head>
+<body class="theme-pink">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer bg-pink">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
+        </div>
+        <input type="text" placeholder="START TYPING...">
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+    <!-- #END# Search Bar -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+
+
+                <a class="navbar-brand" href="../../index.html">WELCOME TO MY BUG TRACKER PROJECT</a>
+            </div>
+
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+
+    <section>
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            LOGIN AS DEMO-USERS
+                        </h2>
+
+                    </div>
+
+                    <div class="body">
+
+                        <div class=" container-fluid col">
+                            <div class="row clearfix">
+                                <div class="col-md-3 ">
+                                    <div class="card">
+                                        <div class="header bg-pink">
+                                            <h2>
+                                                Admin <small>Full Access</small>
+                                            </h2>
+
+                                        </div>
+                                        <div class="body">
+                                            Admin can assign or unassign users to and from roles. Admin can create new project. Admin can access any Projects or any Tickets
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class=" col-md-12 text-center">
+                                                @using (Html.BeginForm("DemoLogin", "Account"))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    @Html.Hidden("key", "DemoAdmin")
+
+                                                    <button class="btn btn-lg bg-teal" type="submit">Login As Demo Admin</button>
+
+                                                }
+                                            </div>
+                                        </div>
+                                        <hr />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="card">
+                                        <div class="header bg-teal">
+                                            <h2>
+                                                Project Manager <small>Manages Projects</small>
+                                            </h2>
+
+                                        </div>
+                                        <div class="body">
+                                            The Project Manager can interact with tickets on projects they are assigned to. They are also in control of assigning developers to projects and tickets.
+
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class=" col-md-12 text-center">
+                                                @using (Html.BeginForm("DemoLogin", "Account"))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    @Html.Hidden("key", "DemoProjectManager")
+
+                                                    <button class="btn btn-lg bg-pink" type="submit">Login As Demo Project Manager</button>
+
+                                                }
+                                            </div>
+                                        </div>
+                                        <hr />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="card">
+                                        <div class="header bg-pink">
+                                            <h2>
+                                                Developer <small>Problem Solver</small>
+                                            </h2>
+
+                                        </div>
+                                        <div class="body">
+                                            Developers are responsible for working on tickets, so they can view a list of Projects they are assigned to, and they can edit tickets they are assigned to.
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class=" col-md-12 text-center">
+                                                @using (Html.BeginForm("DemoLogin", "Account"))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    @Html.Hidden("key", "DemoDeveloper")
+
+                                                    <button class="btn btn-lg bg-teal" type="submit">Login As Demo Developer</button>
+
+                                                }
+                                            </div>
+                                        </div>
+                                        <hr />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="card">
+                                        <div class="header bg-teal">
+                                            <h2>
+                                                Submitter<small>Submits Tickets</small>
+                                            </h2>
+
+                                        </div>
+                                        <div class="body">
+                                            Submitters take the role of the "client" and their job is to submit tickets for projects they are assigned to. But they are not able to assign tickets
+
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class=" col-md-12 text-center">
+                                                @using (Html.BeginForm("DemoLogin", "Account"))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    @Html.Hidden("key", "DemoSubmitter")
+
+                                                    <button class="btn btn-lg bg-pink" type="submit">Login As Demo Submitter</button>
+
+                                                }
+                                            </div>
+                                        </div>
+                                        <hr />
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                            <div class=" row">
+                                <div class=" col-md-3 purple-text h3">
+                                    @Html.ActionLink("Back to Login page", "Login", "Home")
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Jquery Core Js -->
+
+    <script src="~/Scripts/jquery.min.js"></script>
+    <!-- Bootstrap Core Js -->
+
+
+    <script src="~/Scripts/bootstrap.js"></script>
+    <!-- Select Plugin Js -->
+
+    <script src="~/Scripts/bootstrap-select.js"></script>
+    <!-- Slimscroll Plugin Js -->
+
+    <script src="~/Scripts/jquery.slimscroll.js"></script>
+    <!-- Waves Effect Plugin Js -->
+
+    <script src="~/Scripts/waves.js"></script>
+    <!-- Custom Js -->
+
+    <script src="~/Scripts/admin.js"></script>
+    <!-- Demo Js -->
+
+    <script src="~/Scripts/demo.js"></script>
+</body>
+</html>
+

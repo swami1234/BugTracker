@@ -1,0 +1,104 @@
+﻿@model IEnumerable<BugTracker.Models.Project>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>List of my Projects</h2>
+                </br>
+
+                @if (User.IsInRole("Project Manager") || User.IsInRole("Admin"))
+                {
+                    <p>
+                        @Html.ActionLink("Create New", "Create")
+                    </p>
+
+                    <p>
+                        @Html.ActionLink("List of all Projects", "Index")
+                    </p>
+                }
+
+                <small>Make necessary changes and save.</small>
+
+
+            </div>
+            <div class="body table-responsive">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr class="danger">
+                            <th>#</th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Description)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Created)
+                            </th>
+                            <th>
+                                @Html.DisplayName("Manage Area")
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Created)
+                                </td>
+                                <td>
+
+
+                                    @if (User.IsInRole("Project Manager") || User.IsInRole("Admin"))
+                                    {
+                                        <p>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                                        </p>
+                                    }
+
+
+
+                                    @if (User.IsInRole("Project Manager") || User.IsInRole("Admin"))
+                                    {
+                                        @Html.ActionLink("Project Details & User Assigment", "Details", new { id = item.Id })
+                                    }
+
+
+
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                    }
+
+                                    @if (User.IsInRole("Developer"))
+                                    {
+                                        <p>No access here for developers</p>
+                                    }
+                                </td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,167 @@
+﻿@model IEnumerable<BugTracker.Models.Ticket>
+@*@using Bugtracker.Helper*@ @*Follow(1),(2),(3) if you need to hide the edit link if you dont want to show it if your not the authorised person with right to edit the ticket.....ITS COMMENTED OUT BECAUSE I AM USING THAT SWEET ALERT TO STOP ANYONE WHO DONT HAVE A ROLE OF SUBMITTER*@
+@{
+                /**/
+
+                ViewBag.Title = "Index";
+}
+@*@{
+    ViewBag.Title = "Index";
+    var linkHelper = new LinkHelper(); (2)
+}*@
+
+
+
+@if (User.IsInRole("Submitter"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
+
+
+
+
+
+ <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            
+                                 EXPORTABLE TICKET LIST
+                               
+                            
+                           
+                        </div>
+                       
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table id="js-exportable" class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                @*<table class="table">*@
+                                @*<table id="js-exportable" class="display" style="width:100%">*@
+                                <thead>
+                                    <tr>
+                                        <th>@Html.DisplayName("Developer")</th>
+                                        <th>@Html.DisplayName("Submitter")</th>
+                                        <th>@Html.DisplayName("Project")</th>
+                                        <th>@Html.DisplayName("Priority")</th>
+                                        <th>@Html.DisplayName("Status")</th>
+                                        <th>@Html.DisplayName("Type")</th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Title)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Description)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Created)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Updated)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>@Html.DisplayName("Developer")</th>
+                                        <th>@Html.DisplayName("Submitter")</th>
+                                        <th>@Html.DisplayName("Project")</th>
+                                        <th>@Html.DisplayName("Priority")</th>
+                                        <th>@Html.DisplayName("Status")</th>
+                                        <th>@Html.DisplayName("Type")</th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Title)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Description)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Created)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Updated)
+                                        </th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.AssignedToUser.FirstName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.OwnerUser.FirstName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Project.Name)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TicketPriority.Name)
+                                            </td>
+                                            <td>
+
+                                                @Html.DisplayFor(modelItem => item.TicketStatus.Name)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TicketType.Name)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Title)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Description)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Created)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Updated)
+                                            </td>
+
+                                            <td>
+                                         @if (User.IsInRole("Admin"))
+
+                                                {
+                                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) 
+                                                }
+
+
+                                            @Html.ActionLink("Details", "Details", new { id = item.Id })
+
+                                            @if (User.IsInRole("Project Manager") || User.IsInRole("Admin"))
+
+                                            {
+                                                @Html.ActionLink("Assign", "AssignTicket", new { id = item.Id })
+                                            }
+
+                                            @*@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@ @*Nobody can delete a ticket once its created.*@
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Exportable Table -->
+
+@section scripts {
+    <script>
+        var msg = '@TempData["Message"]';
+
+        if (msg != "")
+        {
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: msg
+            })
+        }
+    </script>
+
+}

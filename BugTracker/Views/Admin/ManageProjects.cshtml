@@ -1,0 +1,74 @@
+﻿@using BugTracker.ViewModels
+@using BugTracker.Helper
+
+@model IEnumerable<UserProfileViewModel>
+@{
+    /**/
+
+    /**/
+
+    ViewBag.Title = "UserProject";
+    var projectHelper = new ProjectsHelper();
+}
+
+
+
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    MANAGE PROJECT FOR  USERS
+                    <small>Make necessary changes to user project and save.</small>
+                </h2>
+                </br>
+                </br>
+                <div class="body table-responsive">
+                    <table class=" table table-condensed">
+                        <thead>
+                            <tr class="danger">
+
+                                <th>
+                                    @Html.DisplayName("ASSIGN PROJECT")
+                                </th>
+
+                                <th>
+                                    @*@Html.DisplayName("ASSIGN")*@
+                                </th>
+                            </tr>
+                        </thead>
+                    </div>
+                </div>
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("UserId", (string)ViewBag.UserId)
+                            <div class="body table-responsive">
+                                <table class=" table table-condensed">
+                                   
+                                    <tbody>
+                                        <div class=" row">
+
+                                            <div class="col-md-10">
+                                                @Html.DropDownList("UserProject", null, "--SelectProject--", htmlAttributes: new { @class = "form-control" })
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input type="submit" value="Assign" class="btn btn-danger" />
+                                            </div>
+                                        </div>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                        }
+                </div>
+
+            </div>
+    </div>
+</div>
+
+@Html.ActionLink("Back To User Index", "UserIndex", "Admin")

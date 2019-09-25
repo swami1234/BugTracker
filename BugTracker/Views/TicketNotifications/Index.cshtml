@@ -1,0 +1,92 @@
+﻿@model IEnumerable<BugTracker.Models.TicketNotification>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+               
+                <h2>LIST OF TICKET NOTIFICATION</h2>
+
+                    <p>
+                        @Html.ActionLink("Create New", "Create")
+                    </p>
+                   
+               
+
+            </div>
+            <div class="body table-responsive">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr class="danger">
+                            <th>#</th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Recipient.FirstName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Sender.FirstName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Ticket.OwnerUserId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Created)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Subject)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NotificationBody)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Read)
+                            </th>
+                            <th>
+                                @Html.DisplayName("Manage")
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Recipient.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Sender.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Ticket.OwnerUserId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Created)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Subject)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NotificationBody)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Read)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
