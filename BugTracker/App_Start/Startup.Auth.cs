@@ -68,8 +68,8 @@ namespace BugTracker
                 ClientSecret = "-MDzOW2WA7VPffDX0YypV-41"
             });
 
-         
-            
+
+            app.MapSignalR();
 
            
         }

@@ -29,7 +29,7 @@ namespace BugTracker.Controllers
                 FirstName = u.FirstName,
                 LastName = u.LastName,
                 DisplayName = u.DisplayName,
-              
+                AvatarUrl = u.AvatarUrl,
                 PhoneNumber = u.PhoneNumber,
                 Email = u.Email
             }).ToList();

@@ -2,13 +2,15 @@
 
 
 @{
-                /**/
+    /**/
 
-                Layout = null;
+    Layout = null;
 }
 @{
     ViewBag.Title = "Register";
 }
+
+
 
 
 <!DOCTYPE html>
@@ -43,7 +45,11 @@
 
     <link href="~/Content/style.css" rel="stylesheet" />
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-
+    <style>
+        section.content {
+            margin: 100px 15px 0 20px;
+        }
+    </style>
 
     <link href="~/Content/all-themes.css" rel="stylesheet" />
 </head>
@@ -93,9 +99,9 @@
     <!-- #Top Bar -->
 
     <section class="content">
-        <div class="container-fluid">
+        <div class="container-fluid" >
             <div class="block-header">
-                
+
             </div>
             <!-- Vertical Layout -->
             <div class="row clearfix">
@@ -144,7 +150,10 @@
                                         <input type="password" name="confirmpassword" class="form-control" placeholder="Confirm Password">
                                     </div>
                                 </div>
-                                <input type="checkbox" name="remember_me" class="filled-in">
+
+
+
+                                <input type="checkbox" id="remember_me" name="remember_me" class="filled-in">
                                 <label for="remember_me">Remember Me</label>
                                 <br>
                                 <button type="submit" class="btn bg-teal m-t-15 waves-effect">Register</button>

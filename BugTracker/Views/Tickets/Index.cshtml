@@ -12,12 +12,11 @@
 
 
 
-@if (User.IsInRole("Submitter"))
-{
+
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
-}
+
 
 
 
@@ -122,22 +121,22 @@
                                             </td>
 
                                             <td>
-                                         @if (User.IsInRole("Admin"))
+                                                @if (User.IsInRole("Admin"))
 
                                                 {
-                                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) 
+                                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                                                }
+                                              
+
+                                                @Html.ActionLink("Dashboard", "Details", new { id = item.Id })
+
+                                                @if (User.IsInRole("Project Manager") || User.IsInRole("Admin"))
+
+                                                {
+                                                    @Html.ActionLink("Assign", "AssignTicket", new { id = item.Id })
                                                 }
 
-
-                                            @Html.ActionLink("Details", "Details", new { id = item.Id })
-
-                                            @if (User.IsInRole("Project Manager") || User.IsInRole("Admin"))
-
-                                            {
-                                                @Html.ActionLink("Assign", "AssignTicket", new { id = item.Id })
-                                            }
-
-                                            @*@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@ @*Nobody can delete a ticket once its created.*@
+                                                @*@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@ @*Nobody can delete a ticket once its created.*@
                                             </td>
                                         </tr>
                                     }

@@ -17,15 +17,46 @@ namespace BugTracker.Controllers
         // GET: Charts
         public JsonResult GetRealChartData()
         {
+
             var data = new ChartJsBarData();
 
-            foreach(var ticketStatus in db.TicketStatuses.ToList())
-            {
-                var value = db.TicketStatuses.Find(ticketStatus.Id).Tickets.Count();
+            var userId = User.Identity.GetUserId();//First Get the Id of the logged in user
 
-                data.Labels.Add(ticketStatus.Name);
-                data.Values.Add(value);
+            var myRole = roleHelper.ListUserRoles(userId).FirstOrDefault(); //then get the roles they occupy
+                                                                            //firstordefault Returns the first                   element of a sequence, or a default value if no element is found
+
+            var myTickets = new List<Ticket>();
+
+            switch (myRole)//then based on the role name - push different data into the view
+            {
+                case "Developer":
+                    myTickets = db.Tickets.Where(t => t.AssignedToUserId == userId).ToList();
+                    break;
+
+                case "Submitter":
+                    myTickets = db.Tickets.Where(t => t.OwnerUserId == userId).ToList();
+                    break;
+
+                case "Project Manager":
+                    myTickets = db.Users.Find(userId).Projects.SelectMany(t => t.Tickets).ToList();
+                    break;
+
             }
+
+            foreach (var status in db.TicketStatuses)
+            {
+                data.Labels.Add(status.Name);
+                data.Values.Add(myTickets.Where(t => t.TicketStatusId == status.Id).Count());
+            }
+            //var data = new ChartJsBarData();
+
+            //foreach(var ticketStatus in db.TicketStatuses.ToList())
+            //{
+            //    var value = db.TicketStatuses.Find(ticketStatus.Id).Tickets.Count();
+
+            //    data.Labels.Add(ticketStatus.Name);
+            //    data.Values.Add(value);
+            //}
             return Json(data);
         }
 
@@ -55,22 +86,43 @@ namespace BugTracker.Controllers
                     break;
 
             }
-            foreach (var ticket in myTickets)
-            {
 
-                var priority = ticket.TicketPriority.Name;
-                data.Labels.Add(priority);
-                data.Values.Add(myTickets.Where(t => t.TicketPriority.Name == priority).Count());
+            foreach (var priority in db.TicketPriorities)
+            {
+                data.Labels.Add(priority.Name);
+                data.Values.Add(myTickets.Where(t => t.TicketPriorityId == priority.Id).Count());
             }
+
+            //foreach (var ticket in myTickets)
+            //{
+            //    var value = db.TicketPriorities.Where(t => t.Name)
+
+            //    data.Labels.Add(ticket.TicketPriority.Name);
+
+            //    data.Values.Add(value);
+            //}
             return Json(data);
 
 
-
         }
+            //}
+
+            //public JsonResult GetRealChartData12()
+            //{
+            //    var data = new ChartJsBarData();
+
+            //    foreach (var ticketpriority in db.TicketPriorities.ToList())
+            //    {
+            //        var value = db.TicketPriorities.Find(ticketpriority.Id).Tickets.Count();
+
+            //        data.Labels.Add(ticketpriority.Name);
+            //        data.Values.Add(value);
+            //    }
+            //    return Json(data);
+            //}
 
 
-
-        public JsonResult GetRealChartData1()
+            public JsonResult GetRealChartData1()
         {
             var data = new ChartJsBarData();
 
@@ -110,12 +162,33 @@ namespace BugTracker.Controllers
         {
             var data = new ChartJsBarData();
 
-            foreach (var ticketType in db.TicketTypes.ToList())
-            {
-                var value = db.TicketStatuses.Find(ticketType.Id).Tickets.Count();
+            var userId = User.Identity.GetUserId();//First Get the Id of the logged in user
 
-                data.Labels.Add(ticketType.Name);
-                data.Values.Add(value);
+            var myRole = roleHelper.ListUserRoles(userId).FirstOrDefault(); //then get the roles they occupy
+                                                                            //firstordefault Returns the first                   element of a sequence, or a default value if no element is found
+
+            var myTickets = new List<Ticket>();
+
+            switch (myRole)//then based on the role name - push different data into the view
+            {
+                case "Developer":
+                    myTickets = db.Tickets.Where(t => t.AssignedToUserId == userId).ToList();
+                    break;
+
+                case "Submitter":
+                    myTickets = db.Tickets.Where(t => t.OwnerUserId == userId).ToList();
+                    break;
+
+                case "Project Manager":
+                    myTickets = db.Users.Find(userId).Projects.SelectMany(t => t.Tickets).ToList();
+                    break;
+
+            }
+
+            foreach (var type in db.TicketTypes)
+            {
+                data.Labels.Add(type.Name);
+                data.Values.Add(myTickets.Where(t => t.TicketTypeId == type.Id).Count());
             }
             return Json(data);
 

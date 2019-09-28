@@ -16,15 +16,15 @@ namespace BugTracker.Helper
         private ApplicationDbContext db = new ApplicationDbContext();
         private UserRolesHelper roleHelper = new UserRolesHelper();
 
-        public List<string> UsersInRoleOnProject(int projectId, string roleName)
+        public List<ApplicationUser> UsersInRoleOnProject(int projectId, string roleName)
         {
-            var people = new List<string>();
+            var people = new List<ApplicationUser>();
 
             foreach (var user in UsersOnProject(projectId).ToList())
             {
                 if (roleHelper.IsUserInRole(user.Id, roleName))
                 {
-                    people.Add(user.Id);
+                    people.Add(user);
                 }
             }
             return people;

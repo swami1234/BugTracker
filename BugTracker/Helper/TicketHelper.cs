@@ -150,6 +150,36 @@ namespace BugTracker.Helper
         }
 
 
+        public ICollection<Ticket> ListTickets()
+
+        {
+            var userId = HttpContext.Current.User.Identity.GetUserId();
+
+            var myRole = roleHelper.ListUserRoles(userId).FirstOrDefault();
+
+
+
+            var myTickets = new List<Ticket>();
+
+            switch (myRole)//then based on the role name - push different data into the view
+            {
+                case "Developer":
+                    myTickets = db.Tickets.Where(t => t.AssignedToUserId == userId).ToList();
+                    break;
+
+                case "Submitter":
+                    myTickets = db.Tickets.Where(t => t.OwnerUserId == userId).ToList();
+                    break;
+
+                case "Project Manager":
+                    myTickets = db.Users.Find(userId).Projects.SelectMany(t => t.Tickets).ToList();
+                    break;
+
+            }
+            return myTickets;
+
+        }
+
 
         public ICollection<Ticket> GetOpenTickets(int projectId)
 
@@ -221,7 +251,7 @@ namespace BugTracker.Helper
 
             var project = db.Projects.Find(projectId);
 
-            var urgentTickets = project.Tickets.Where(t => t.TicketPriority.Name == "Open" || t.TicketPriority.Name == "High");
+            var urgentTickets = project.Tickets.Where(t => t.TicketPriority.Name == "Urgent" || t.TicketPriority.Name == "High");
 
 
 
@@ -229,7 +259,107 @@ namespace BugTracker.Helper
 
         }
 
+        public ICollection<Ticket> GetMyUrgentTickets()
 
+        {
+            var userId = HttpContext.Current.User.Identity.GetUserId();
+
+            var myRole = roleHelper.ListUserRoles(userId).FirstOrDefault();
+
+
+
+            var myTickets = new List<Ticket>();
+
+            switch (myRole)//then based on the role name - push different data into the view
+            {
+                case "Developer":
+                    myTickets = db.Tickets.Where(t => t.AssignedToUserId == userId).ToList();
+                    break;
+
+                case "Submitter":
+                    myTickets = db.Tickets.Where(t => t.OwnerUserId == userId).ToList();
+                    break;
+
+                case "Project Manager":
+                    myTickets = db.Users.Find(userId).Projects.SelectMany(t => t.Tickets).ToList();
+                    break;
+
+
+            }
+
+            var urgentTickets = myTickets.Where(t => t.TicketPriority.Name == "Urgent" || t.TicketPriority.Name == "High");
+
+            return urgentTickets.ToList();
+
+        }
+
+        public static int GetMyUrgentTicketsCount()
+
+        {
+            var userId = HttpContext.Current.User.Identity.GetUserId();
+
+            var myRole = roleHelper.ListUserRoles(userId).FirstOrDefault();
+
+
+
+            var myTickets = new List<Ticket>();
+
+            switch (myRole)//then based on the role name - push different data into the view
+            {
+                case "Developer":
+                    myTickets = db.Tickets.Where(t => t.AssignedToUserId == userId).ToList();
+                    break;
+
+                case "Submitter":
+                    myTickets = db.Tickets.Where(t => t.OwnerUserId == userId).ToList();
+                    break;
+
+                case "Project Manager":
+                    myTickets = db.Users.Find(userId).Projects.SelectMany(t => t.Tickets).ToList();
+                    break;
+
+
+            }
+
+            var urgentTickets = myTickets.Where(t => t.TicketPriority.Name == "Urgent" || t.TicketPriority.Name == "High");
+
+            return urgentTickets.Count();
+
+        }
+
+        public static int GetMyHighTicketsCount()
+
+        {
+            var userId = HttpContext.Current.User.Identity.GetUserId();
+
+            var myRole = roleHelper.ListUserRoles(userId).FirstOrDefault();
+
+
+
+            var myTickets = new List<Ticket>();
+
+            switch (myRole)//then based on the role name - push different data into the view
+            {
+                case "Developer":
+                    myTickets = db.Tickets.Where(t => t.AssignedToUserId == userId).ToList();
+                    break;
+
+                case "Submitter":
+                    myTickets = db.Tickets.Where(t => t.OwnerUserId == userId).ToList();
+                    break;
+
+                case "Project Manager":
+                    myTickets = db.Users.Find(userId).Projects.SelectMany(t => t.Tickets).ToList();
+                    break;
+
+
+            }
+
+            var highTickets = myTickets.Where(t => t.TicketPriority.Name == "High");
+
+            return highTickets.Count();
+
+        }
 
         public bool IsUserTicketOwner(string userId, int ticketId)
 
@@ -371,6 +501,8 @@ namespace BugTracker.Helper
 
         }
 
+
+       
 
 
         //public async Task UnassignUserFromTicket(int ticketId, string userId)

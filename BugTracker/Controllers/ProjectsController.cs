@@ -37,6 +37,12 @@ namespace BugTracker.Controllers
 
             var myProjects = currentUser.Projects.ToList();
 
+           
+
+            ViewBag.ProjectId = new SelectList(myProjects, "Id", "Name");
+
+           
+
             return View(myProjects);
 
 

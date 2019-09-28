@@ -77,7 +77,7 @@
                     <table class="table table-condensed">
                         <thead>
                             <tr class="danger">
-                                <th>#</th>
+                               
                                 <th>  @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })</th>
                                 <th>  @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })</th>
                                 <th>  @Html.LabelFor(model => model.DisplayName, htmlAttributes: new { @class = "control-label col-md-2" })</th>
@@ -88,7 +88,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">1</th>
+                               
                                 <td>@Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })</td>
                                 <td>@Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })</td>
                                 <td>@Html.EditorFor(model => model.DisplayName, new { htmlAttributes = new { @class = "form-control" } })</td>
@@ -108,18 +108,19 @@
 
     <div class="row form-group">
         <div class=" col-md-12">
-            <input type="submit" value="Save" class="btn btn-danger" />
+            <input type="submit" value="Save" class="btn bg-teal" />
         </div>
     </div>
 </div>
 }
-
+<br/>
 <div>
     <div class=" row">
         <div class=" col-md-12">
             @Html.ActionLink("Back to Dashboard", "Dashboard", "Home")
         </div>
     </div>
+    <br/>
    <div class=" row">
        <div class=" col-md-12">
            @Html.ActionLink("Change Password", "ResetPassword", "Account")

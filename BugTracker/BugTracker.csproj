@@ -249,7 +249,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Attachments\Coder Foundry image.png" />
+    <Content Include="Avatars\avatar-1-mini.jpg" />
+    <Content Include="Avatars\brad pit.jpg" />
     <Content Include="Avatars\Coder Foundry image.png" />
+    <Content Include="Avatars\img %2820%29.jpg" />
+    <Content Include="Avatars\img %283%291.jpg" />
+    <Content Include="Avatars\img %289%29-mini.jpg" />
+    <Content Include="Avatars\John doe.jpg" />
+    <Content Include="Avatars\kate moss.jpg" />
     <Content Include="Avatars\myphoto.jpg" />
     <Content Include="Content\all-themes.css" />
     <Content Include="Content\all-themes.min.css" />
@@ -411,6 +418,7 @@
     <Content Include="Scripts\basic.js" />
     <Content Include="Scripts\bg.js" />
     <Content Include="Scripts\bn.js" />
+    <Content Include="Scripts\bootstrap-notify.js" />
     <Content Include="Scripts\bootstrap-select.min.js" />
     <Content Include="fonts\Material-Design-Icons.eot" />
     <Content Include="fonts\Material-Design-Icons.ttf" />

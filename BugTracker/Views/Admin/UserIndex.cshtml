@@ -1,11 +1,12 @@
 ﻿@using BugTracker.ViewModels
 @using BugTracker.Helper
-
+@using Microsoft.AspNet.Identity
+@using BugTracker.Models
 @model IEnumerable<UserProfileViewModel>
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "UserIndex";
+    ViewBag.Title = "UserIndex";
 }
 
 <style>
@@ -16,6 +17,13 @@
 </style>
 
 @{
+    //var db = new ApplicationDbContext();
+    //var roleHelper = new UserRolesHelper();
+    //var projectHelper = new ProjectsHelper();
+    //var userId = User.Identity.GetUserId();
+    //var user = db.Users.Find(userId);
+
+
     var roleHelper = new UserRolesHelper();
     var projectHelper = new ProjectsHelper();
 }
@@ -38,7 +46,7 @@
                 <table class="table table-condensed">
                     <thead>
                         <tr class="danger">
-                            <th>#</th>
+                           
                             <th>@Html.DisplayName("Avatar")</th>
                             <th>@Html.DisplayNameFor(model => model.FirstName)</th>
                             <th>@Html.DisplayNameFor(model => model.LastName)</th>
@@ -52,9 +60,9 @@
                         @foreach (var user in Model)
                         {
                             <tr>
-                                <th scope="row">1</th>
+                                
 
-                                <td class=" avatar">
+                                <td class="image">
 
                                     @if (user.AvatarUrl != null)
                                     {
@@ -83,17 +91,17 @@
                                     @roleHelper.ListUserRoles(user.Id).FirstOrDefault()
                                 </td>
                                 <td>
-                                  
+
                                     @foreach (var project in projectHelper.ListUserProjects(user.Id))
                                     {
-                                        @project.Name <br/>
+                                        @project.Name <br />
                                     }
 
                                 </td>
                                 <td>
                                     @if (User.IsInRole("Admin"))
                                     {
-                                        @Html.ActionLink("Manage Role |", "ManageUserRoles", "Admin", new { userId =                                          user.Id }, null)
+                                        @Html.ActionLink("Manage Role |", "ManageUserRoles", "Admin", new { userId = user.Id }, null)
                                     }
 
                                     @Html.ActionLink("Manage Projects", "ManageProjects", "Admin", new { userid = user.Id }, null)

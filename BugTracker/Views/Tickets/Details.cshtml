@@ -14,479 +14,488 @@
     var db = new ApplicationDbContext();
 
     var user = db.Users.Find(userId);
+
+    var roleHelper = new UserRolesHelper();
+
+    var projectHelper = new ProjectsHelper();
+
+    var ticketHelper = new TicketHelper();
 }
 <style>
     .overflow {
         background-color: #eee;
         width: 350px;
         height: 450px;
-       
         overflow: auto;
     }
 </style>
-<div class=" container-fluid">
+<style>
+    section.content {
+        margin: 100px 15px 0 170px;
+    }
+</style>
 
-    <div class=" row clearfix">
-        <div class=" col-md-12">
-            <div class="card">
-                <div class="body bg-pink">
-                    <div class=" row clearfix">
-                        <div class="col-lg-12 col-md-3 col-sm-6 col-xs-12">
-                            <div class="info-box bg-teal hover-expand-effect">
+<section class="content">
+    <div class="container-fluid">
+        <div class=" row clearfix">
+            <div class="col-lg-12 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-teal hover-expand-effect">
 
-                                <div class="content">
-                                    <div class="text"><h4>TICKET DASHBOARD</h4></div>
+                    <div class="content">
+                        <div class="text"><h4>TICKET-DASHBOARD</h4></div>
 
-                                </div>
-                            </div>
-                        </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Example -->
+        <!-- Multiple Items To Be Open -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            INDIVIDUAL TICKET DETAILS
 
-                    @*<div class=" row">
-                        <div class=" col-md-6 col-md-offset-4">
-                            <!-- Button trigger modal-->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalConfirmDelete">
-                                PROJECT DETAILS OF THIS TICKET
+                        </h2>
 
-                            </button>
-
-                            <!--Modal: modalConfirmDelete-->
-                            <div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                 aria-hidden="true">
-                                <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
-                                    <!--Content-->
-                                    <div class="modal-content text-center">
-                                        <!--Header-->
-                                        <div class="modal-header d-flex justify-content-center">
-                                            <p class="heading">THIS TICKET BELONGS TO PROJECT:</p>
-                                            "@Html.DisplayFor(model => model.Project.Name)"
-                                        </div>
-                                        <hr />
-                                        <!--Body-->
-                                        <!--Footer-->
-                                       
-                                    </div>
-                                    <!--/.Content-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>*@
-
-                    <div class="row ">
-                        <!-- Visitors -->
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="body bg-teal">
-                                    <div class="sparkline" data-type="line" data-spot-Radius="4" data-highlight-Spot-Color="rgb(233, 30, 99)" data-highlight-Line-Color="#fff"
-                                         data-min-Spot-Color="rgb(255,255,255)" data-max-Spot-Color="rgb(255,255,255)" data-spot-Color="rgb(255,255,255)"
-                                         data-offset="90" data-width="100%" data-height="92px" data-line-Width="2" data-line-Color="rgba(255,255,255,0.7)"
-                                         data-fill-Color="rgba(0, 188, 212, 0)">
-                                        TICKET DETAILS
-                                    </div>
-                                    <hr/>
-                                    <ul class="dashboard-stat-list">
-                                        @*<li>
-                                @Html.DisplayName("DEVELOPER")
-                                <span class="pull-right"> <small>@Html.DisplayFor(model => model.AssignedToUser.FirstName)</small></span>
-                            </li>
-                            <li>
-                                @Html.DisplayName("SUBMITTER")
-                                <span class="pull-right">@Html.DisplayFor(model => model.OwnerUser.FirstName)</span>
-                            </li>
-                            <li>
-                                @Html.DisplayName("PROJECT")
-                                <span class="pull-right"> @Html.DisplayFor(model => model.Project.Name)</span>
-                            </li>*@
-                                        <li>
-                                            @Html.DisplayName("TITLE")
-                                            <span class="pull-right"> @Html.DisplayFor(model => model.Title)</span>
-                                        </li>
-                                        <li>
-                                            @Html.DisplayName("PRIORITY")
-                                            <span class="pull-right">  @Html.DisplayFor(model => model.TicketPriority.Name)</span>
-                                        </li>
-                                        <li>
-                                            @Html.DisplayName("STATUS")
-                                            <span class="pull-right"> @Html.DisplayFor(model => model.TicketStatus.Name)</span>
-                                        </li>
-                                        <li>
-                                            @Html.DisplayName("TYPE")
-                                            <span class="pull-right">   @Html.DisplayFor(model => model.TicketType.Name)</span>
-                                        </li>
-
-                                        <li>
-                                            @Html.DisplayName("DESCRIPTION")
-                                            <span class="pull-right"> @Html.DisplayFor(model => model.Description)</span>
-                                        </li>
-                                        <li>
-                                            @Html.DisplayName("CREATED")
-                                            <span class="pull-right">@Html.DisplayFor(model => model.Created)</span>
-                                        </li>
-                                        <li>
-                                            @Html.DisplayName("UPDATED")
-                                            <span class="pull-right"> @Html.DisplayFor(model => model.Updated)</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- #END# Visitors -->
-                        <!-- Latest Social Trends -->
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="body bg-teal">
-                                    <div class="sparkline" data-type="line" data-spot-Radius="4" data-highlight-Spot-Color="rgb(233, 30, 99)" data-highlight-Line-Color="#fff"
-                                         data-min-Spot-Color="rgb(255,255,255)" data-max-Spot-Color="rgb(255,255,255)" data-spot-Color="rgb(255,255,255)"
-                                         data-offset="90" data-width="100%" data-height="92px" data-line-Width="2" data-line-Color="rgba(255,255,255,0.7)"
-                                         data-fill-Color="rgba(0, 188, 212, 0)">
-                                        TICKET ATTACHMENTS
-                                    </div>
-                                    <hr/>
-                                    <ul class="dashboard-stat-list">
-                                        <li>
-                                            @using (Html.BeginForm("Create", "TicketAttachments", FormMethod.Post, new { enctype = "Multipart/form-data" }))
-                                            {
-                                                @Html.AntiForgeryToken()
-                                                @Html.Hidden("TicketId", Model.Id)
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        @Html.TextBox("AttachmentTitle", null,
-                                                       new { @class = "form-control", placeholder = "Title" })
-
-                                                    </div>
-                                                </div>
-                                                <br />
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        @Html.TextBox("AttachmentDescription", null,
-                                                       new { @class = "form-control", placeholder = "Description" })
-
-                                                    </div>
-                                                </div>
-                                                <br />
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        @Html.TextBox("FilePath", null, new { @class = "form-control", type = "file" })
-
-                                                    </div>
-                                                </div>
-
-                                                <br />
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <button type="submit" class="btn bg-pink">Add Attachment</button>
-
-                                                    </div>
-                                                </div>
-                                            }
-
-                                            @foreach (var attachment in Model.TicketAttachments)
-                                            {
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        @*<i class="@ImageUploadValidator.GetIcon(attachment.FilePath)" />*@
-                                                        <i class="@ImageUploadValidator.GetIcon(attachment.FilePath)"></i>
-                                                    </div>
-                                                </div>
-
-                                                <hr/>
-                                            }
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- #END# Latest Social Trends -->
-                        <!-- Answered Tickets -->
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="body bg-teal">
-                                    <div class="sparkline" data-type="line" data-spot-Radius="4" data-highlight-Spot-Color="rgb(233, 30, 99)" data-highlight-Line-Color="#fff"
-                                         data-min-Spot-Color="rgb(255,255,255)" data-max-Spot-Color="rgb(255,255,255)" data-spot-Color="rgb(255,255,255)"
-                                         data-offset="90" data-width="100%" data-height="92px" data-line-Width="2" data-line-Color="rgba(255,255,255,0.7)"
-                                         data-fill-Color="rgba(0, 188, 212, 0)">
-                                        PROJECT DETAILS OF THIS TICKET
-                                    </div>
-                                    <hr />
-                                    <div class="content-center">
-                                        <p class="heading">THIS TICKET BELONGS TO PROJECT:</p>
-                                        <p class=" heading text-center"><b>"@Html.DisplayFor(model => model.Project.Name)"</b> </p>
-                                    </div>
-                                    <hr />
-                                    <div class="flex-center">
-                                        <p>PROJECT TEAM</p>
-                                        <!-- Section: Team v.1 --><hr />
-
-
-
-
-                                        <!-- Grid row -->
-                                        <div class="row">
-
-                                            <!-- Grid column -->
-                                            <div class="col-md-4">
-                                                <div class="avatar mx-auto">
-                                                    @if (user.AvatarUrl != null)
-                                                    {
-                                                        <img src="@user.AvatarUrl" width="48" height="48" alt="User" />
-
-                                                    }
-
-                                                    else
-                                                    {
-                                                        <img src="~/Images/user.png" width="48" height="48" alt="User" />
-                                                    }
-                                                </div>
-                                                <h5 class="font-weight-bold mt-4 mb-3">@Html.DisplayFor(model => model.AssignedToUser.FirstName)</h5>
-
-                                                <h5>Developer</h5>
-
-
-                                            </div>
-
-                                            <div class=" col-md-4">
-                                                <div class="avatar mx-auto">
-                                                    @if (user.AvatarUrl != null)
-                                                    {
-                                                        <img src="@user.AvatarUrl" width="48" height="48" alt="User" />
-
-                                                    }
-
-                                                    else
-                                                    {
-                                                        <img src="~/Images/user.png" width="48" height="48" alt="User" />
-                                                    }
-                                                </div>
-                                                <h5 class="font-weight-bold mt-4 mb-3">@Html.DisplayFor(model => model.OwnerUser.FirstName)</h5>
-                                                <h5>Submitter</h5>
-
-
-                                            </div>
-
-                                            <div class="col-md-4">
-                                                <div class="avatar mx-auto">
-                                                    @if (user.AvatarUrl != null)
-                                                    {
-                                                        <img src="@user.AvatarUrl" width="48" height="48" alt="User" />
-
-                                                    }
-
-                                                    else
-                                                    {
-                                                        <img src="~/Images/user.png" width="48" height="48" alt="User" />
-                                                    }
-                                                </div>
-                                                <h5 class="font-weight-bold mt-4 mb-3">@Html.DisplayFor(model => model.AssignedToUser.FirstName)</h5>
-                                                <h5>Project-Manager</h5>
-
-
-                                            </div>
-
-
-
-                                        </div>
-                                        <!-- Grid row -->
-
-                                        <hr />
-                                       
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                        <div class=" row clearfix">
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <div class="overflow">
-                                        <div class=" body bg-teal">
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+                                <div class="panel-group full-body" id="accordion_19" role="tablist" aria-multiselectable="true">
+                                    <div class="panel panel-col-pink">
+                                        <div class="panel-heading" role="tab" id="headingOne_19">
+                                            <h4 class="panel-title">
+                                                <a role="button" data-toggle="collapse" href="#collapseOne_19" aria-expanded="true" aria-controls="collapseOne_19">
 
-                                            <div class="sparkline" data-type="line" data-spot-Radius="4" data-highlight-Spot-Color="rgb(233, 30, 99)" data-highlight-Line-Color="#fff"
-                                                 data-min-Spot-Color="rgb(255,255,255)" data-max-Spot-Color="rgb(255,255,255)" data-spot-Color="rgb(255,255,255)"
-                                                 data-offset="90" data-width="100%" data-height="92px" data-line-Width="2" data-line-Color="rgba(255,255,255,0.7)"
-                                                 data-fill-Color="rgba(0, 188, 212, 0)">
-                                                TICKET HISTORIES
+                                                    TICKET DETAILS
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseOne_19" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne_19">
+                                            <div class="panel-body">
+                                                <div class=" row">
+                                                    <div class=" col-md-12">
+                                                        <ul class="dashboard-stat-list">
+
+                                                            <li>
+                                                                @Html.DisplayName("TITLE")
+                                                                <span class="pull-right"> @Html.DisplayFor(model => model.Title)</span>
+                                                            </li>
+                                                            <li>
+                                                                @Html.DisplayName("PRIORITY")
+                                                                <span class="pull-right">  @Html.DisplayFor(model => model.TicketPriority.Name)</span>
+                                                            </li>
+                                                            <li>
+                                                                @Html.DisplayName("STATUS")
+                                                                <span class="pull-right"> @Html.DisplayFor(model => model.TicketStatus.Name)</span>
+                                                            </li>
+                                                            <li>
+                                                                @Html.DisplayName("TYPE")
+                                                                <span class="pull-right">   @Html.DisplayFor(model => model.TicketType.Name)</span>
+                                                            </li>
+
+                                                            <li>
+                                                                @Html.DisplayName("DESCRIPTION")
+                                                                <span class="pull-right"> @Html.DisplayFor(model => model.Description)</span>
+                                                            </li>
+                                                            <li>
+                                                                @Html.DisplayName("CREATED")
+                                                                <span class="pull-right">@Html.DisplayFor(model => model.Created)</span>
+                                                            </li>
+                                                            <li>
+                                                                @Html.DisplayName("UPDATED")
+                                                                <span class="pull-right"> @Html.DisplayFor(model => model.Updated)</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+
+                                                </div>
                                             </div>
-                                            <hr/>
-                                            <ul class="dashboard-stat-list">
-                                                @foreach (var tickethistory in ViewBag.History)
-                                                {
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-col-cyan">
+                                        <div class="panel-heading" role="tab" id="headingTwo_19">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" href="#collapseTwo_19" aria-expanded="false" aria-controls="collapseTwo_19">
+                                                    TICKET ATTACHMENTS
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseTwo_19" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo_19">
+                                            <div class="panel-body">
+                                                <ul class="dashboard-stat-list">
                                                     <li>
-                                                        <div class=" row">
-                                                            <div class=" col-md-6">
-                                                                @Html.DisplayName("FirstName")
-                                                            </div>
-                                                            <div class=" col-md-6">
-                                                                <span class="pull-right">@tickethistory.User.FirstName </span>
-                                                            </div>
+                                                        @using (Html.BeginForm("Create", "TicketAttachments", FormMethod.Post, new { enctype = "Multipart/form-data" }))
+                                                        {
+                                                            @Html.AntiForgeryToken()
+                                                            @Html.Hidden("TicketId", Model.Id)
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    @Html.TextBox("AttachmentTitle", null,
+                                                                   new { @class = "form-control", placeholder = "Title" })
 
-                                                        </div>
-                                                        <div class=" row">
-                                                            <div class=" col-md-6">
-                                                                @Html.DisplayName("Property Name")
+                                                                </div>
                                                             </div>
-                                                            <div class=" col-md-6">
-                                                                <span class="pull-right">@tickethistory.PropertyName </span>
+                                                            <br />
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    @Html.TextBox("AttachmentDescription", null,
+                                                                   new { @class = "form-control", placeholder = "Description" })
+
+                                                                </div>
                                                             </div>
+                                                            <br />
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    @Html.TextBox("FilePath", null, new { @class = "form-control", type = "file" })
 
-                                                        </div>
-
-                                                        <div class=" row">
-                                                            <div class=" col-md-6">
-
-                                                                @Html.DisplayName("Old Value")
-                                                            </div>
-                                                            <div class=" col-md-6">
-                                                                <span class="pull-right"> @tickethistory.OldValue </span>
-                                                            </div>
-
-                                                        </div>
-                                                        <div class=" row">
-                                                            <div class=" col-md-6">
-
-
-                                                                @Html.DisplayName("New Value")
-                                                            </div>
-                                                            <div class=" col-md-6">
-                                                                <span class="pull-right">  @tickethistory.NewValue </span>
+                                                                </div>
                                                             </div>
 
-                                                        </div>
+                                                            <br />
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <button type="submit" class="btn bg-pink">Add Attachment</button>
 
-                                                        <div class=" row">
-                                                            <div class=" col-md-6">
-
-
-                                                                @Html.DisplayName("Updated")
+                                                                </div>
                                                             </div>
-                                                            <div class=" col-md-6">
-                                                                <span class="pull-right">  @tickethistory.NewValue </span>
+                                                        }
+
+                                                        @foreach (var attachment in Model.TicketAttachments)
+                                                        {
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    @*<i class="@ImageUploadValidator.GetIcon(attachment.FilePath)" />*@
+                                                                    <i class="@ImageUploadValidator.GetIcon(attachment.FilePath)"></i>
+                                                                </div>
                                                             </div>
 
-                                                        </div>
-
-
-
-
-
-
+                                                            <hr />
+                                                        }
                                                     </li>
-                                                    <hr />
-                                                }
 
-
-                                            </ul>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-push-1 col-md-4">
-                                <div class="card">
-                                    <div class="overflow">
-                                        <div class="body bg-teal">
-                                            <div class="sparkline" data-type="line" data-spot-Radius="4" data-highlight-Spot-Color="rgb(233, 30, 99)" data-highlight-Line-Color="#fff"
-                                                 data-min-Spot-Color="rgb(255,255,255)" data-max-Spot-Color="rgb(255,255,255)" data-spot-Color="rgb(255,255,255)"
-                                                 data-offset="90" data-width="100%" data-height="92px" data-line-Width="2" data-line-Color="rgba(255,255,255,0.7)"
-                                                 data-fill-Color="rgba(0, 188, 212, 0)">
-                                                TICKET COMMENTS
-                                            </div>
-                                            <hr />
-                                            <ul class="dashboard-stat-list">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        @Model.TicketComments.Count() comments
-                                                    </div>
-                                                </div>
-
-
-
-
-
-
-
-
-
-
-                                                @if (User.Identity.IsAuthenticated)
-                                                {
-                                                    using (@Html.BeginForm("Create", "TicketComments", FormMethod.Post))
+                                    <div class="panel panel-col-teal">
+                                        <div class="panel-heading" role="tab" id="headingThree_19">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" href="#collapseThree_19" aria-expanded="false" aria-controls="collapseThree_19">
+                                                    TICKET HISTORIES
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseThree_19" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree_19">
+                                            <div class="panel-body">
+                                                <ul class="dashboard-stat-list">
+                                                    @foreach (var tickethistory in ViewBag.History)
                                                     {
-                                                        @Html.AntiForgeryToken()
-                                                        @Html.Hidden("TicketId", Model.Id);
-
-
-
-                                                        <div class=" row">
-                                                            <div class="col-md-12">
-
-                                                                @Html.TextBox("CommentBody", null, new { @class = "form-control", placeholder = "Write comment here..." })
-
+                                                        <li>
+                                                            <div class=" row">
+                                                                <div class=" col-md-6">
+                                                                    @Html.DisplayName("FirstName")
+                                                                </div>
+                                                                <div class=" col-md-6">
+                                                                    <span class="pull-right">@tickethistory.User.FirstName </span>
+                                                                </div>
 
                                                             </div>
+                                                            <div class=" row">
+                                                                <div class=" col-md-6">
+                                                                    @Html.DisplayName("Property Name")
+                                                                </div>
+                                                                <div class=" col-md-6">
+                                                                    <span class="pull-right">@tickethistory.PropertyName </span>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class=" row">
+                                                                <div class=" col-md-6">
+
+                                                                    @Html.DisplayName("Old Value")
+                                                                </div>
+                                                                <div class=" col-md-6">
+                                                                    <span class="pull-right"> @tickethistory.OldValue </span>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class=" row">
+                                                                <div class=" col-md-6">
+
+
+                                                                    @Html.DisplayName("New Value")
+                                                                </div>
+                                                                <div class=" col-md-6">
+                                                                    <span class="pull-right">  @tickethistory.NewValue </span>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class=" row">
+                                                                <div class=" col-md-6">
+
+
+                                                                    @Html.DisplayName("Updated")
+                                                                </div>
+                                                                <div class=" col-md-6">
+                                                                    <span class="pull-right">  @tickethistory.NewValue </span>
+                                                                </div>
+
+                                                            </div>
+                                                        </li>
+                                                        <hr />
+                                                    }
+
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-col-orange">
+                                        <div class="panel-heading" role="tab" id="headingFour_19">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" href="#collapseFour_19" aria-expanded="false" aria-controls="collapseFour_19">
+                                                    TICKET COMMENTS
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseFour_19" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour_19">
+                                            <div class="panel-body">
+                                                <ul class="dashboard-stat-list">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            @Model.TicketComments.Count() comments
                                                         </div>
+                                                    </div>
 
-                                                        <div class=" row">
-                                                            <div class=" offset-md-3 col-md-6">
-                                                                <button class="btn bg-pink" type="submit" value="Post">Post Comment</button>
+
+
+
+
+
+
+
+
+
+                                                    @if (User.Identity.IsAuthenticated)
+                                                    {
+                                                        using (@Html.BeginForm("Create", "TicketComments", FormMethod.Post))
+                                                        {
+                                                            @Html.AntiForgeryToken()
+                                                            @Html.Hidden("TicketId", Model.Id);
+
+
+
+                                                            <div class=" row">
+                                                                <div class="col-md-12">
+
+                                                                    @Html.TextBox("CommentBody", null, new { @class = "form-control", placeholder = "Write comment here..." })
+
+
+                                                                </div>
                                                             </div>
+
+                                                            <div class=" row">
+                                                                <div class=" offset-md-3 col-md-6">
+                                                                    <button class="btn bg-pink" type="submit" value="Post">Post Comment</button>
+                                                                </div>
+                                                            </div>
+
+                                                        }
+                                                    }
+
+
+
+                                                    <br />
+
+                                                    @foreach (var comment in Model.TicketComments.OrderByDescending(c => c.created))
+                                                    {
+
+                                                        <div class="container-fluid">
+                                                            <div class="card-body" id="card-body">
+                                                                <h6 class="card-title">Created by @comment.Author.DisplayName</h6>
+                                                                <h6>@comment.created.ToString("MM/dd/yy")</h6>
+                                                                <p class="card-text" id="card-text">@comment.CommentBody</p>
+
+
+                                                                @if (User.IsInRole("Admin"))
+                                                                {
+
+                                                                    @Html.ActionLink("Edit", "Edit", "Comments", new { id = comment.Id }, new { @class = "btn bg-pink" });
+
+                                                                    <hr />
+                                                                }
+
+                                                            </div>
+
+
                                                         </div>
 
                                                     }
-                                                }
 
 
 
-                                                <br />
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-col-cyan">
+                                        <div class="panel-heading" role="tab" id="headingFive_19">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" href="#collapseFive_19" aria-expanded="false" aria-controls="collapseFive_19">
+                                                    TICKET'S PROJECT DETAILS
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseFive_19" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive_19">
+                                            <div class="panel-body">
+                                                <div class="content-center">
+                                                    <p class="heading text-center"><b>THIS TICKET BELONGS TO PROJECT:</b></p>
+                                                    <p class=" heading text-center h3"><b>"@Html.DisplayFor(model => model.Project.Name)"</b> </p>
+                                                </div>
+                                                <hr />
+                                                <div class="flex-center">
+                                                    <p>PROJECT TEAM</p>
+                                                    <!-- Section: Team v.1 --><hr />
 
-                                                @foreach (var comment in Model.TicketComments.OrderByDescending(c => c.created))
-                                                {
+                                                  
 
-                                                    <div class="container-fluid">
-                                                        <div class="card-body" id="card-body">
-                                                            <h6 class="card-title">Created by @comment.Author.DisplayName</h6>
-                                                            <h6>@comment.created.ToString("MM/dd/yy")</h6>
-                                                            <p class="card-text" id="card-text">@comment.CommentBody</p>
+                                                    <!-- Grid row -->
+                                                    <div class="row">
+
+                                                        <!-- Grid column -->
+                                                        <div class="col-md-push-0 col-md-3">
+                                                            <h5>Logged in User</h5>
+                                                            <div class="avatar mx-auto">
+                                                                @if (user.AvatarUrl != null)
+                                                                {
+                                                                    <img src="@user.AvatarUrl" width="48" height="48" alt="User" />
+
+                                                                }
+
+                                                                else
+                                                                {
+                                                                    <img src="~/Images/user.png" width="48" height="48" alt="User" />
+                                                                }
+                                                            </div>
+                                                            <h5 class="font-weight-bold mt-4 mb-3">@Html.DisplayFor(model => user.FirstName)</h5>
 
 
-                                                            @if (User.IsInRole("Admin"))
-                                                            {
 
-                                                                @Html.ActionLink("Edit", "Edit", "Comments", new { id = comment.Id }, new { @class = "btn bg-pink" });
 
-                                                                <hr />
-                                                            }
+                                                        </div>
+                                                        <div class="col-md-3">
+
+                                                            <h5>ProjectManager</h5>
+                                                            <div class="avatar mx-auto">
+                                                                @foreach (ApplicationUser projectmanager in ViewBag.TeamPMs)
+                                                                {
+                                                                    <ul>
+                                                                        <li>
+                                                                            @if (projectmanager.AvatarUrl != null)
+                                                                            {
+                                                                                <img src="@projectmanager.AvatarUrl" width="48" height="48" alt="User" /> @projectmanager.DisplayName
+
+                                                                            }
+
+                                                                            else
+                                                                            {
+                                                                                <img src="~/Images/user.png" width="48" height="48" alt="User" /> @projectmanager.DisplayName
+                                                                            }
+                                                                        </li>
+
+                                                                    </ul>
+                                                                  
+                                                                }
+
+
+                                                            </div>
+
+
+
+
+
+
+                                                        </div>
+                                                        
+                                                        <div class=" col-md-push-1 col-md-3">
+                                                            <h5>Submitter</h5>
+                                                            <div class="avatar mx-auto">
+                                                                @if (Model.OwnerUser.AvatarUrl != null)
+                                                                {
+                                                                    <img src="@Model.OwnerUser.AvatarUrl" width="48" height="48" alt="User" />
+
+                                                                }
+
+                                                                else
+                                                                {
+                                                                    <img src="~/Images/user.png" width="48" height="48" alt="User" />
+                                                                }
+                                                            </div>
+                                                            <h5 class="font-weight-bold mt-4 mb-3">@Html.DisplayFor(model => model.OwnerUser.FirstName)</h5>
+
+
+
+                                                        </div>
+
+                                                        <div class="col-md-push-1 col-md-3">
+                                                            <h5>Developer</h5>
+                                                            <div class="avatar mx-auto">
+                                                                @if (Model.AssignedToUser.AvatarUrl != null)
+                                                                {
+                                                                    <img src="@Model.AssignedToUser.AvatarUrl" width="48" height="48" alt="User" />
+
+                                                                }
+
+                                                                else
+                                                                {
+                                                                    <img src="~/Images/user.png" width="48" height="48" alt="User" />
+                                                                }
+                                                            </div>
+                                                            <h5 class="font-weight-bold mt-4 mb-3">@Html.DisplayFor(model => model.AssignedToUser.FirstName)</h5>
+
+
 
                                                         </div>
 
 
+
                                                     </div>
+                                                    <!-- Grid row -->
 
-                                                }
+                                                    <hr />
 
-
-
-                                            </ul>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
-                      
+                    </div>
+
+
 
                 </div>
-
-
-
             </div>
-
         </div>
+        <!-- #END# Multiple Items To Be Open -->
     </div>
-</div>
+    <p>
+        @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+        @Html.ActionLink("Back to Ticket List", "MyIndex")
+    </p>
+
+
+</section>
+
+
+
 
 
 <!-- Classic tabs -->
-<p>
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
-    @Html.ActionLink("Back to List", "MyIndex")
-</p>

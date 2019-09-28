@@ -11,6 +11,7 @@ using BugTracker.Helper;
 using BugTracker.Models;
 using Microsoft.AspNet.Identity;
 
+
 namespace BugTracker.Controllers
 {
     [Authorize(Roles = "Admin, Developer, Project Manager, Submitter")]
@@ -127,9 +128,9 @@ namespace BugTracker.Controllers
                 return HttpNotFound();
             }
             var project = ticket.Project;
-            //ViewBag.TeamPMs = projectHelper.UsersInRoleOnProject(project.Id, SystemRole.ProjectManager).ToList();
-            //ViewBag.TeamSubs = projectHelper.UsersInRoleOnProject(project.Id, SystemRole.Submitter).ToList();
-            //ViewBag.TeamDevs = projectHelper.UsersInRoleOnProject(project.Id, SystemRole.Developer).ToList();
+            ViewBag.TeamPMs = projectHelper.UsersInRoleOnProject(project.Id, "Project Manager");
+            //ViewBag.TeamSubs = projectHelper.UsersInRoleOnProject(project.Id, "Submitter").ToList();
+            //ViewBag.TeamDevs = projectHelper.UsersInRoleOnProject(project.Id, "Developer").ToList();
             ViewBag.History = ticket.TicketHistories;
             ViewBag.Notification = ticket.TicketNotifications;
             //ViewBag.CurrentUser = User.Identity.GetUserId();
@@ -139,15 +140,16 @@ namespace BugTracker.Controllers
         
         // GET: Tickets/Create
         [Authorize(Roles ="Submitter")]
+        [AllowAnonymous]
         public ActionResult Create()
         {
-            // This code is used to pop a sweet alert if anyone other than submitter tries to create a ticket. We are just omitting this code as we are using it in a different way and just not showing the link "create new" if its anyone other than submitter. 
-            //if (!TicketDecisionHelper.TicketIsCreatedByUser())
-            //{
-            //    TempData["Message"] = "You are not authorized to create ticket based on your assigned role";
+           // This code is used to pop a sweet alert if anyone other than submitter tries to create a ticket. We are just omitting this code as we are using it in a different way and just not showing the link "create new" if its anyone other than submitter. 
+            if (!TicketDecisionHelper.TicketIsCreatedByUser())
+            {
+                TempData["Message"] = "You are not authorized to create ticket based on your assigned role";
 
-            //    return RedirectToAction("Index", "Tickets");
-            //}
+                return RedirectToAction("Index", "Tickets");
+            }
 
             var myProjects = projectHelper.ListUserProjects(User.Identity.GetUserId());
             ViewBag.ProjectId = new SelectList(myProjects, "Id", "Name");
