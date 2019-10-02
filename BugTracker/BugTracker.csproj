@@ -262,6 +262,7 @@
     <Content Include="Content\all-themes.min.css" />
     <Content Include="Content\animate.css" />
     <Content Include="Content\animate.min.css" />
+    <Content Include="Content\bootstrap-fullcalendar.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\buttons.datatables.min.css" />
@@ -270,6 +271,7 @@
     <Content Include="Content\dataTables.bootstrap.css" />
     <Content Include="Content\dataTables.bootstrap.min.css" />
     <Content Include="Content\documentation.css" />
+    <Content Include="Content\font-awesome.css" />
     <Content Include="Content\jquery.dataTables.min.css" />
     <Content Include="Content\materialize.css" />
     <Content Include="Content\mdb.css" />
@@ -277,6 +279,7 @@
     <Content Include="Content\mdb.lite.min.css" />
     <Content Include="Content\mdb.min.css" />
     <Content Include="Content\mdbootstrap.css" />
+    <Content Include="Content\style-responsive.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\style.min.css" />
     <Content Include="Content\sweetalert.css" />
@@ -328,7 +331,9 @@
     <Content Include="Images\alpha-horizontal.png" />
     <Content Include="Images\alpha.png" />
     <Content Include="Images\animation-bg.jpg" />
+    <Content Include="Images\apple-touch-icon.png" />
     <Content Include="Images\avatar-1-mini.jpg" />
+    <Content Include="Images\favicon.png" />
     <Content Include="Images\hue-horizontal.png" />
     <Content Include="Images\hue.png" />
     <Content Include="Images\img %283%291.jpg" />
@@ -447,6 +452,7 @@
     <Content Include="Scripts\buttons.html5.min.js" />
     <Content Include="Scripts\buttons.print.min.js" />
     <Content Include="Scripts\ca.js" />
+    <Content Include="Scripts\calendar-conf-events.js" />
     <Content Include="Scripts\Chart.bundle.js" />
     <Content Include="Scripts\Chart.bundle.min.js" />
     <Content Include="Scripts\Chart.js" />
@@ -457,7 +463,9 @@
     <Content Include="Scripts\chosen.proto.js" />
     <Content Include="Scripts\chosen.proto.min.js" />
     <Content Include="Scripts\colored.js" />
+    <Content Include="Scripts\common-scripts.js" />
     <Content Include="Scripts\cs.js" />
+    <Content Include="Scripts\custom.min.js" />
     <Content Include="Scripts\cy.js" />
     <Content Include="Scripts\da.js" />
     <Content Include="Scripts\datatables-select.js" />
@@ -534,6 +542,7 @@
     <Content Include="Scripts\demo.js" />
     <Content Include="Scripts\dialogs.js" />
     <Content Include="Scripts\donutchart.js" />
+    <Content Include="Scripts\dropzone.js" />
     <Content Include="Scripts\editable-table.js" />
     <Content Include="Scripts\editors.js" />
     <Content Include="Scripts\el.js" />
@@ -556,6 +565,7 @@
     <Content Include="Scripts\forms-free.js" />
     <Content Include="Scripts\fr-ca.js" />
     <Content Include="Scripts\fr.js" />
+    <Content Include="Scripts\fullcalendar.min.js" />
     <Content Include="Scripts\gl.js" />
     <Content Include="Scripts\google.js" />
     <Content Include="Scripts\gu.js" />
@@ -582,6 +592,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="Scripts\jquery.dataTables.js" />
     <Content Include="Scripts\jquery.dataTables.min.js" />
+    <Content Include="Scripts\jquery.dcjqaccordion.2.7.js" />
     <Content Include="Scripts\jquery.easing.js" />
     <Content Include="Scripts\jquery.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -589,6 +600,8 @@
     <Content Include="Scripts\jquery-knob.js" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\jquery.nicescroll.js" />
+    <Content Include="Scripts\jquery.scrollTo.min.js" />
     <Content Include="Scripts\jquery.signalR-2.4.1.js" />
     <Content Include="Scripts\jquery.signalR-2.4.1.min.js" />
     <Content Include="Scripts\jquery.slimscroll.js" />
@@ -622,6 +635,7 @@
     <Content Include="Scripts\notifications.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\pdfmake.min.js" />
+    <Content Include="Scripts\perfect-scrollbar.jquery.min.js" />
     <Content Include="Scripts\piechart.js" />
     <Content Include="Scripts\pl.js" />
     <Content Include="Scripts\popper.min.js" />
@@ -638,6 +652,7 @@
     <Content Include="Scripts\script.js" />
     <Content Include="Scripts\scrolling-navbar.js" />
     <Content Include="Scripts\si.js" />
+    <Content Include="Scripts\sidebarmenu.js" />
     <Content Include="Scripts\sign-in.js" />
     <Content Include="Scripts\sign-up.js" />
     <Content Include="Scripts\sk.js" />

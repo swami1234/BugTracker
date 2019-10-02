@@ -66,13 +66,13 @@
 
     /* Style the front side (fallback if image is missing) */
     .flip-card-front {
-        background-color: #E91E63;
+        background-color: #d0d6e2;
         color: black;
     }
 
     /* Style the back side */
     .flip-card-back {
-        background-color: #E91E63;
+        background-color: #d0d6e2;
         color: white;
         transform: rotateY(180deg);
     }
@@ -98,13 +98,45 @@
 <div class="container-fluid">
     <div class=" row clearfix">
         <div class="col-lg-12 col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box bg-teal hover-expand-effect">
+            <div class="body">
+                <div class="row clearfix">
+                    <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+                        <div class="panel-group" id="accordion_9" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-col-pink">
+                                <div class="panel-heading" role="tab" id="headingOne_9">
+                                    <h4 class="panel-title">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion_9" href="#collapseOne_9" aria-expanded="true" aria-controls="collapseOne_9">
+                                            USER-DASHBOARD
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne_9" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne_9">
+                                    <div class="panel-body">
+                                        <div class="body table-responsive">
 
-                <div class="content">
-                    <div class="text"><h4>USER-DASHBOARD</h4></div>
-                    @DayOfWeek.Thursday @DateTime.Now
+
+
+                                            <div class="content">
+                                                <div class="text"><h4>USER-DASHBOARD</h4></div>
+                                                @DayOfWeek.Thursday @DateTime.Now
+                                            </div>
+                                        
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            
         </div>
     </div>
 
@@ -113,13 +145,13 @@
 
     <!-- Widgets -->
     <div class="row clearfix">
-       
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
                     <h2>
                         <div class="text"><h4>MY PROJECTS COUNT: </h4><h4>(@projhelper.GetUserProjectCount())</h4> </div>
-                       
+
                     </h2>
 
                 </div>
@@ -138,10 +170,10 @@
                                     <div id="collapseOne_9" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne_9">
                                         <div class="panel-body">
                                             <div class="body table-responsive">
-                                               
 
 
-                                                
+
+
                                                 <div class=" row">
                                                     <div class=" col-md-12">
                                                         <h4>
@@ -162,9 +194,9 @@
 
                                                 </div>
 
-                                                   
 
-                                             
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -215,31 +247,31 @@
                                                 <table class="table table-condensed">
 
 
-                                                 
-                                                        <div class=" row">
-                                                            <div class=" col-md-12">
-                                                                <h4>
 
-                                                                    @foreach (var ticket in ticketHelper.ListTickets())
-                                                                    {
+                                                    <div class=" row">
+                                                        <div class=" col-md-12">
+                                                            <h4>
 
-                                                                        
-                                                                            <li>
-                                                                                Ticket Title: @ticket.Title
-                                                                            </li>
-                                                                        
+                                                                @foreach (var ticket in ticketHelper.ListTickets())
+                                                                {
 
+
+                                                                    <li>
+                                                                        Ticket Title: @ticket.Title
+                                                                    </li>
 
 
 
 
-                                                                            }
-                                                                </h4>
-                                                            </div>
 
+
+                                                                }
+                                                            </h4>
                                                         </div>
 
-                                                
+                                                    </div>
+
+
 
                                                 </table>
                                             </div>
@@ -255,351 +287,541 @@
             </div>
         </div>
     </div>
-</div>
 
-                    </div>
 
-<!-- Tabs With Custom Animations -->
-<div class="row clearfix">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="card">
-            <div class="header">
-                <h2>
-                    MY PROJECTS AND TICKETS INFORMATION
-                </h2>
 
-            </div>
-            <div class="body">
-                <div class="row clearfix">
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        <!-- Nav tabs -->
-                        <ul class="nav nav-tabs tab-nav-right" role="tablist">
-                            <li role="presentation" class="active"><a href="#home_animation_1" data-toggle="tab">My Role</a></li>
-                            <li role="presentation"><a href="#profile_animation_1" data-toggle="tab">Start Chat</a></li>
-                            <li role="presentation"><a href="#messages_animation_1" data-toggle="tab">Donut Chart</a></li>
 
-                        </ul>
-                        <!-- Tab panes -->
-                        <br />
-                        <br />
-                        <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane animated flipInX active" id="home_animation_1">
-                                <h4><P>My Role and reponsibilities</P></h4>
-                                @if (User.IsInRole("Project Manager"))
-                                {
-                                    <h2><span class="label bg-pink"> @roleHelper.ListUserRoles(user.Id).FirstOrDefault()</span></h2>
+    <!-- Tabs With Custom Animations -->
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        MY PROJECTS AND TICKETS INFORMATION
+                    </h2>
+
+                </div>
+                <div class="body">
+                    <div class="row clearfix">
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                                <li role="presentation" class="active"><a href="#home_animation_1" data-toggle="tab">My Role</a></li>
+                                <li role="presentation"><a href="#profile_animation_1" data-toggle="tab">Start Chat</a></li>
+                                <li role="presentation"><a href="#messages_animation_1" data-toggle="tab">Donut Chart</a></li>
+
+                            </ul>
+                            <!-- Tab panes -->
+                            <br />
+                            <br />
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane animated flipInX active" id="home_animation_1">
+                                    <h4><P>My Role and reponsibilities</P></h4>
+                                    @if (User.IsInRole("Project Manager"))
+                                    {
+                                        <h2><span class="label bg-pink"> @roleHelper.ListUserRoles(user.Id).FirstOrDefault()</span></h2>
+                                        <br />
+                                        <p>The Project Manager can interact with tickets on projects they are assigned to. They are also in control of assigning developers to projects and tickets.</p>
+
+
+
+
+                                    }
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <h2><span class="label bg-pink"> @roleHelper.ListUserRoles(user.Id).FirstOrDefault()</span></h2>
+                                        <br />
+                                        <p>Admin can assign or unassign users to and from roles. Admin can create new project. Admin can access any Projects or any Tickets</p>
+
+
+
+                                    }
+                                    @if (User.IsInRole("Developer"))
+                                    {
+                                        <h2><span class="label bg-pink"> @roleHelper.ListUserRoles(user.Id).FirstOrDefault()</span></h2>
+                                        <br />
+                                        <p>Developers are responsible for working on tickets, so they can view a list of Projects they are assigned to, and they can edit tickets they are assigned to. </p>
+
+
+
+
+                                    }
+                                    @if (User.IsInRole("Submitter"))
+                                    {
+                                        <h2><span class="label bg-pink"> @roleHelper.ListUserRoles(user.Id).FirstOrDefault()</span></h2>
+                                        <br />
+                                        <p>Submitters take the role of the "client" and their job is to submit tickets for projects they are assigned to. But they are not able to assign tickets </p>
+
+
+                                    }
+
+                                </div>
+                                <div role="tabpanel" class="tab-pane animated flipInX" id="profile_animation_1">
+
+                                    <div class=" col-md-6">
+                                        <div class=" col-md-12 h3 text-center">
+
+                                            @if (User.IsInRole("Project Manager"))
+                                            {
+
+                                                <h2><span class="label bg-pink">MY TEAM's ROLE:</span></h2>
+
+                                                <br />
+                                                <p>(1) ADMIN </p>
+                                                <p>(2) SUBMITTER</p>
+                                                <p>(3) DEVELOPER</p>
+
+                                                <h3>@Html.ActionLink("Start Chat", "Chat", "Home")</h3>
+                                            }
+                                            @if (User.IsInRole("Admin"))
+                                            {
+
+                                                <h2><span class="label bg-pink">MY TEAM's ROLE:</span></h2>
+
+                                                <br />
+                                                <p>(1) PROJECT MANAGER </p>
+                                                <p>(2) SUBMITTER </p>
+                                                <p>(3) DEVELOPER </p>
+
+                                                <h3> @Html.ActionLink("Start Chat", "Chat", "Home")</h3>
+                                            }
+                                            @if (User.IsInRole("Developer"))
+                                            {
+
+                                                <h2><span class="label bg-pink">MY TEAM's ROLE:</span></h2>
+
+
+                                                <br />
+                                                <p>(1) ADMIN </p>
+                                                <p>(2) PROJECT MANAGER </p>
+                                                <p>(3) SUBMITTER </p>
+
+                                                <h3>@Html.ActionLink("Start Chat", "Chat", "Home")</h3>
+                                            }
+                                            @if (User.IsInRole("Submitter"))
+                                            {
+
+                                                <h2><span class="label bg-pink">MY TEAM's ROLE:</span></h2>
+
+                                                <br />
+                                                <p>(1) ADMIN </p>
+                                                <p>(2) PROJECT MANAGER </p>
+                                                <p>(3) DEVELOPER </p>
+
+                                                <h3>@Html.ActionLink("Start Chat", "Chat", "Home")</h3>
+                                            }
+
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane animated flipInX" id="messages_animation_1">
+                                    <h2><span class="label bg-pink">My Project's Donut Chart</span></h2>
+
                                     <br />
-                                    <p>The Project Manager can interact with tickets on projects they are assigned to. They are also in control of assigning developers to projects and tickets.</p>
-
-
-
-
-                                }
-                                @if (User.IsInRole("Admin"))
-                                {
-                                    <h2><span class="label bg-pink"> @roleHelper.ListUserRoles(user.Id).FirstOrDefault()</span></h2>
-                                    <br />
-                                    <p>Admin can assign or unassign users to and from roles. Admin can create new project. Admin can access any Projects or any Tickets</p>
-
-
-
-                                }
-                                @if (User.IsInRole("Developer"))
-                                {
-                                    <h2><span class="label bg-pink"> @roleHelper.ListUserRoles(user.Id).FirstOrDefault()</span></h2>
-                                    <br />
-                                    <p>Developers are responsible for working on tickets, so they can view a list of Projects they are assigned to, and they can edit tickets they are assigned to. </p>
-
-
-
-
-                                }
-                                @if (User.IsInRole("Submitter"))
-                                {
-                                    <h2><span class="label bg-pink"> @roleHelper.ListUserRoles(user.Id).FirstOrDefault()</span></h2>
-                                    <br />
-                                    <p>Submitters take the role of the "client" and their job is to submit tickets for projects they are assigned to. But they are not able to assign tickets </p>
-
-
-                                }
+                                    <canvas id="doughnutChart"></canvas>
+                                </div>
 
                             </div>
-                            <div role="tabpanel" class="tab-pane animated flipInX" id="profile_animation_1">
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                                <li role="presentation" class="active"><a href="#home_animation_2" data-toggle="tab">Ticket Status chart</a></li>
+                                <li role="presentation"><a href="#profile_animation_2" data-toggle="tab">Ticket Types chart</a></li>
 
-                                <div class=" col-md-6">
+                                <li role="presentation"><a href="#settings_animation_2" data-toggle="tab">Ticket status Pie Chart</a></li>
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane animated fadeInRight active" id="home_animation_2">
+
+                                    <h3><span class="label bg-pink">Ticket Status Bar chart</span></h3>
+                                    <br />
+                                    <canvas id="barChart"></canvas>
+                                </div>
+                                <div role="tabpanel" class="tab-pane animated fadeInRight" id="profile_animation_2">
+
+                                    <h3><span class="label bg-pink">Ticket Types Donut Chart</span></h3>
+                                    <br />
+                                    <canvas id="doughnutChart1"></canvas>
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane animated fadeInRight" id="settings_animation_2">
+
+                                    <h3><span class="label bg-pink">Ticket status Pie Chart</span></h3>
+                                    <br />
+                                    <canvas id="pieChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #END# Tabs With Custom Animations -->
+
+    <br />
+    <br />
+
+
+    <div class=" row">
+        <div class="col-md-6">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="body">
+                            <div class="row clearfix">
+                                <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+                                    <div class="panel-group" id="accordion_9" role="tablist" aria-multiselectable="true">
+                                        <div class="panel panel-col-pink">
+                                            <div class="panel-heading" role="tab" id="headingOne_9">
+                                                <h4 class="panel-title">
+                                                    <a role="button" data-toggle="collapse" data-parent="#accordion_9" href="#collapseOne_9" aria-expanded="true" aria-controls="collapseOne_9">
+                                                        Urgent/High Priority Tickets --- Hover to Flip
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOne_9" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne_9">
+                                                <div class="panel-body">
+                                                    <div class="body table-responsive">
+
+
+
+
+                                                        <div class=" row">
+                                                            <div class=" col-md-12">
+
+                                                                <section id="main-content">
+                                                                    <section class="wrapper">
+                                                                        <h3>
+
+                                                                            <div class=" row">
+                                                                                <div class=" col-md-6 text-danger">Urgent Tickets: @TicketHelper.GetMyUrgentTicketsCount()</div>
+                                                                                <div class=" col-md-6 text-danger">High Tickets: @TicketHelper.GetMyHighTicketsCount()</div>
+                                                                            </div>
+                                                                            <hr />
+                                                                            <div class=" row">
+                                                                                <div class=" col-md-12 h3 text-center">
+                                                                                    <span class="label bg-teal">Ticket Priorites Pie Chart</span>
+                                                                                    <br />
+
+                                                                                    <canvas id="pieChart12"></canvas>
+                                                                                </div>
+                                                                            </div>
+                                                                        </h3>
+
+                                                                    </section>
+                                                                    <!-- /wrapper -->
+                                                                </section>
+
+
+                                                            </div>
+
+
+                                                        </div>
+
+
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class=" col-md-12 h3 text-center">
+                                <span class="label bg-teal">Urgent/High Priority Tickets</span>
+                                <br />
+                                <br />
+
+                                <div class=" row">
+                                    <div class=" col-md-6 text-center bg-teal">Urgent Tickets: @TicketHelper.GetMyUrgentTicketsCount()</div>
+                                    <div class=" col-md-6 text-center bg-teal">High Tickets: @TicketHelper.GetMyHighTicketsCount()</div>
+                                </div>
+
+
+
+                                <div class=" row">
                                     <div class=" col-md-12 h3 text-center">
+                                        <span class="label bg-teal">Ticket Priorites Pie Chart</span>
+                                        <br />
 
-                                        @if (User.IsInRole("Project Manager"))
-                                        {
+                                        <canvas id="pieChart12"></canvas>
+                                    </div>
+                                </div>
 
-                                            <h2><span class="label bg-pink">MY TEAM's ROLE:</span></h2>
-
-                                            <br />
-                                            <p>(1) ADMIN </p>
-                                            <p>(2) SUBMITTER</p>
-                                            <p>(3) DEVELOPER</p>
-
-                                            <h3>@Html.ActionLink("Start Chat", "Chat", "Home")</h3>
-                                        }
-                                        @if (User.IsInRole("Admin"))
-                                        {
-
-                                            <h2><span class="label bg-pink">MY TEAM's ROLE:</span></h2>
-
-                                            <br />
-                                            <p>(1) PROJECT MANAGER </p>
-                                            <p>(2) SUBMITTER </p>
-                                            <p>(3) DEVELOPER </p>
-
-                                            <h3> @Html.ActionLink("Start Chat", "Chat", "Home")</h3>
-                                        }
-                                        @if (User.IsInRole("Developer"))
-                                        {
-
-                                            <h2><span class="label bg-pink">MY TEAM's ROLE:</span></h2>
+                            </div>*@
+                    </div>
 
 
-                                            <br />
-                                            <p>(1) ADMIN </p>
-                                            <p>(2) PROJECT MANAGER </p>
-                                            <p>(3) SUBMITTER </p>
 
-                                            <h3>@Html.ActionLink("Start Chat", "Chat", "Home")</h3>
-                                        }
-                                        @if (User.IsInRole("Submitter"))
-                                        {
+                    <div class="flip-card-back">
+                        <div class="body">
+                            <div class="row clearfix">
+                                <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+                                    <div class="panel-group" id="accordion_9" role="tablist" aria-multiselectable="true">
+                                        <div class="panel panel-col-pink">
+                                            <div class="panel-heading" role="tab" id="headingOne_9">
+                                                <h4 class="panel-title">
+                                                    <a role="button" data-toggle="collapse" data-parent="#accordion_9" href="#collapseOne_9" aria-expanded="true" aria-controls="collapseOne_9">
+                                                        Urgent/High Priority Tickets Details
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOne_9" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne_9">
+                                                <div class="panel-body">
+                                                    <div class="body table-responsive">
 
-                                            <h2><span class="label bg-pink">MY TEAM's ROLE:</span></h2>
 
-                                            <br />
-                                            <p>(1) ADMIN </p>
-                                            <p>(2) PROJECT MANAGER </p>
-                                            <p>(3) DEVELOPER </p>
 
-                                            <h3>@Html.ActionLink("Start Chat", "Chat", "Home")</h3>
-                                        }
+
+                                                        <div class=" row">
+                                                            <div class=" col-md-12">
+
+                                                                <section id="main-content">
+                                                                    <section class="wrapper">
+                                                                        <h3>
+                                                                            <i class="fa fa-angle-right"></i>
+                                                                            @foreach (var ticket in ticketHelper.GetMyUrgentTickets())
+                                                                            {
+                                                                                <div class=" row">
+                                                                                    <div class=" col-md-4 bg-teal h6">
+                                                                                        <p>Ticket Title:</p>  <p>@ticket.Title</p>
+                                                                                    </div>
+                                                                                    <div class=" col-md-4 bg-teal h6">
+                                                                                        <p>Description:</p><p>@ticket.Description</p>
+                                                                                    </div>
+                                                                                    <div class=" col-md-4 bg-teal h6">
+                                                                                        <p>Priority:</p><p>@ticket.TicketPriority.Name</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <hr />
+                                                                            }
+                                                                        </h3>
+                                                                        @*<div class="row mt">
+                                                                                <div class="white-panel mt">
+                                                                                    <div class="panel-body">
+                                                                                        <form action="assets/dropzone/upload.php" class="dropzone" id="my-awesome-dropzone"></form>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>*@
+                                                                    </section>
+                                                                    <!-- /wrapper -->
+                                                                </section>
+
+
+                                                            </div>
+
+
+                                                        </div>
+
+
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class=" overflow">
+                                <div class=" col-md-12 h3 text-center">
+                                    <span class="label bg-teal">Urgent/High Priority Tickets Details</span>
+                                    <br />
+                                    <br />
+
+                                    @foreach (var ticket in ticketHelper.GetMyUrgentTickets())
+                                    {
+                                        <div class=" row">
+                                            <div class=" col-md-4 bg-teal h6">
+                                                <p>Ticket Title:</p>  <p>@ticket.Title</p>
+                                            </div>
+                                            <div class=" col-md-4 bg-teal h6">
+                                                <p>Description:</p><p>@ticket.Description</p>
+                                            </div>
+                                            <div class=" col-md-4 bg-teal h6">
+                                                <p>Priority:</p><p>@ticket.TicketPriority.Name</p>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                    }
+
+                                </div>
+                            </div>*@
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6">
+
+            <div class="body">
+                <div class="row clearfix">
+                    <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+                        <div class="panel-group" id="accordion_9" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-col-pink">
+                                <div class="panel-heading" role="tab" id="headingOne_9">
+                                    <h4 class="panel-title">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion_9" href="#collapseOne_9" aria-expanded="true" aria-controls="collapseOne_9">
+                                            Dropzone File Upload
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne_9" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne_9">
+                                    <div class="panel-body">
+                                        <div class="body table-responsive">
+
+
+
+
+                                            <div class=" row">
+                                                <div class=" col-md-12">
+
+                                                    <section id="main-content">
+                                                        <section class="wrapper">
+                                                            <h3><i class="fa fa-angle-right"></i> Dropzone File Upload</h3>
+                                                            <div class="row mt">
+                                                                <div class="white-panel mt">
+                                                                    <div class="panel-body">
+                                                                        <form action="assets/dropzone/upload.php" class="dropzone" id="my-awesome-dropzone"></form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </section>
+                                                        <!-- /wrapper -->
+                                                    </section>
+
+
+                                                </div>
+
+
+                                            </div>
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="body">
+        <div class="row clearfix">
+            <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+                <div class="panel-group" id="accordion_9" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-col-pink">
+                        <div class="panel-heading" role="tab" id="headingOne_9">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion_9" href="#collapseOne_9" aria-expanded="true" aria-controls="collapseOne_9">
+                                    Inline Editor
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne_9" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne_9">
+                            <div class="panel-body">
+                                <div class="body table-responsive">
+
+
+
+
+                                    <div class=" row">
+                                        <div class=" col-md-12">
+
+                                            <!--main content start-->
+                                            <section id="main-content">
+                                                <section class="wrapper site-min-height">
+                                                    <h3><i class="fa fa-angle-right"></i> Inline Editor</h3>
+                                                    <div class="row content-panel mt mb">
+                                                        <div class="col-md-6">
+                                                            <h2 contenteditable="true">Dashio is a fully responsive admin dashboard template built with Bootstrap 3.1.1 Framework</h2>
+                                                            <h3 contenteditable="true">Following the Equator, Complete</h3>
+                                                            <h4 contenteditable="true">Mark Twain (Samuel Clemens)</h4>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p contenteditable="true" class="mt">
+                                                                Later, when we reached the city, and glanced down the chief avenue, smouldering in its crushed-strawberry tint, those splendid effects were repeated; for every balcony, and every fanciful bird-cage of a snuggery countersunk in the house-fronts,
+                                                                and all the long lines of roofs were crowded with people, and each crowd was an explosion of brilliant color.
+                                                            </p>
+                                                            <p contenteditable="true">For color, and picturesqueness, and novelty, and outlandishness, and sustained interest and fascination, it was the most satisfying show I had ever seen, and I suppose I shall not have the privilege of looking upon its like again.</p>
+                                                            <p contenteditable="true">In the first place God made idiots. This was for practice. Then He made School Boards. --Pudd'nhead Wilson's New Calendar.</p>
+                                                            <p contenteditable="true">
+                                                                "I pray please to give me some action (work) for I am very poor boy I have no one to help me even so father for it so it seemed in thy good sight, you give the Telegraph Office, and another work what is your wish I am very poor boy, this understand
+                                                                what is your wish you my father I am your son this understand what is your wish.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+
+                                                </section>
+                                                <!-- /wrapper -->
+                                            </section>
+                                            <!-- /MAIN CONTENT -->
+                                            <!--main content end-->
+
+
+                                        </div>
 
 
                                     </div>
 
 
+
+
                                 </div>
                             </div>
-                            <div role="tabpanel" class="tab-pane animated flipInX" id="messages_animation_1">
-                                <h2><span class="label bg-pink">My Project's Donut Chart</span></h2>
-
-                                <br />
-                                <canvas id="doughnutChart"></canvas>
-                            </div>
-
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        <!-- Nav tabs -->
-                        <ul class="nav nav-tabs tab-nav-right" role="tablist">
-                            <li role="presentation" class="active"><a href="#home_animation_2" data-toggle="tab">Ticket Status chart</a></li>
-                            <li role="presentation"><a href="#profile_animation_2" data-toggle="tab">Ticket Types chart</a></li>
 
-                            <li role="presentation"><a href="#settings_animation_2" data-toggle="tab">Ticket status Pie Chart</a></li>
-                        </ul>
-                        <!-- Tab panes -->
-                        <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane animated fadeInRight active" id="home_animation_2">
 
-                                <h3><span class="label bg-pink">Ticket Status Bar chart</span></h3>
-                                <br />
-                                <canvas id="barChart"></canvas>
-                            </div>
-                            <div role="tabpanel" class="tab-pane animated fadeInRight" id="profile_animation_2">
-
-                                <h3><span class="label bg-pink">Ticket Types Donut Chart</span></h3>
-                                <br />
-                                <canvas id="doughnutChart1"></canvas>
-                            </div>
-
-                            <div role="tabpanel" class="tab-pane animated fadeInRight" id="settings_animation_2">
-
-                                <h3><span class="label bg-pink">Ticket status Pie Chart</span></h3>
-                                <br />
-                                <canvas id="pieChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- #END# Tabs With Custom Animations -->
-
-<br />
-<br />
-
-
-<div class=" row">
-    <div class="col-md-6">
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-
-                    <div class=" col-md-12 h3 text-center">
-                        <span class="label bg-teal">Urgent/High Priority Tickets</span>
-                        <br />
-                        <br/>
-                       
-                        <div class=" row">
-                            <div class=" col-md-6 text-center bg-teal">Urgent Tickets: @TicketHelper.GetMyUrgentTicketsCount()</div>
-                            <div class=" col-md-6 text-center bg-teal">High Tickets: @TicketHelper.GetMyHighTicketsCount()</div>
-                        </div>
-             
-                       
-
-                        <div class=" row">
-                            <div class=" col-md-12 h3 text-center">
-                                <span class="label bg-teal">Ticket Priorites Pie Chart</span>
-                                <br />
-                              
-                                <canvas id="pieChart12"></canvas>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            
-
-                <div class="flip-card-back">
-                    <div class=" overflow">
-                    <div class=" col-md-12 h3 text-center">
-                        <span class="label bg-teal">Urgent/High Priority Tickets Details</span>
-                        <br />
-                        <br />
-
-                        @foreach (var ticket in ticketHelper.GetMyUrgentTickets())
-                        {
-                            <div class=" row">
-                                <div class=" col-md-4 bg-teal">
-                                    <p>Ticket Title:</p>  <p>@ticket.Title</p>
-                                </div>
-                                <div class=" col-md-4 bg-teal">
-                                        <p>Description:</p><p>@ticket.Description</p>
-                                </div>
-                                <div class=" col-md-4 bg-teal">
-                                        <p>Priority:</p><p>@ticket.TicketPriority.Name</p>
-                                </div>                                                             
-                            </div>        
-                            <hr/>
-                        }
-
-                    </div>
-                        </div>
-                 </div>
-
-           </div>
-        </div>
-        
-    </div>
-
-
-    <div class="col-md-6">
-        <div class="card">
-            <div class="header bg-pink">
-                <h2>
-                    My To do list <small>Make daily notes here...</small>
-                </h2>
-
-            </div>
-            <div class="body">
-                <input type="text" id="myInput" placeholder="Title...">
-                <span onclick="newElement()" class="addbtn btn bg-pink">Add</span>
-            </div>
-                <ul id="myUL">
-                    <li>
-                        <b></b>
-                    </li>
-
-                </ul>
-
-        </div>
-
-    </div>
-
-
-    </div>
-
- 
 
 
 
- 
-    @*<div class="row clearfix jsdemo-notification-button">
-        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2">
-            <button type="button" class="btn bg-indigo btn-block waves-effect" data-placement-from="top" data-placement-align="right"
-                    data-animate-enter="animated lightSpeedIn" data-animate-exit="animated lightSpeedOut"
-                    data-color-name="bg-black">
-                LIGHT SPEED IN/OUT
-            </button>
-        </div>
-    </div>*@
+
+
 </div>
 
 <!-- Jquery Core Js -->
 @section scripts{
 
-    <script>
+    
 
-        // Create a "close" button and append it to each list item
-        var myNodelist = document.getElementsByTagName("b");
-        var i;
-        for (i = 0; i < myNodelist.length; i++) {
-            var span = document.createElement("SPAN");
-            var txt = document.createTextNode("\u00D7");
-            span.className = "close";
-            span.appendChild(txt);
-            myNodelist[i].appendChild(span);
-        }
-
-        // Click on a close button to hide the current list item
-        var close = document.getElementsByClassName("close");
-        var i;
-        for (i = 0; i < close.length; i++) {
-            close[i].onclick = function () {
-                var div = this.parentElement;
-                div.style.display = "none";
-            }
-        }
-
-
-
-        // Create a new list item when clicking on the "Add" button
-        function newElement() {
-            var li = document.createElement("li");
-            var inputValue = document.getElementById("myInput").value;
-            var t = document.createTextNode(inputValue);
-            li.appendChild(t);
-            if (inputValue === '') {
-                alert("You must write something!");
-            } else {
-                document.getElementById("myUL").appendChild(li);
-            }
-            document.getElementById("myInput").value = "";
-
-            var span = document.createElement("SPAN");
-            var txt = document.createTextNode("\u00D7");
-            span.className = "close";
-            span.appendChild(txt);
-            li.appendChild(span);
-
-            for (i = 0; i < close.length; i++) {
-                close[i].onclick = function () {
-                    var div = this.parentElement;
-                    div.style.display = "none";
-                }
-            }
-        }
-    </script>
-
-
+  
    
 
 }
