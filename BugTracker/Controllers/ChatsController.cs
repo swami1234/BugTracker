@@ -41,6 +41,7 @@ namespace BugTracker.Controllers
         // GET: Chats/Create
         public ActionResult Create()
         {
+            ViewBag.Id = new SelectList("Id");
             ViewBag.AssignedToUserId = new SelectList(db.Users, "Id", "FirstName");
             ViewBag.OwnerUserId = new SelectList(db.Users, "Id", "FirstName");
             return View();

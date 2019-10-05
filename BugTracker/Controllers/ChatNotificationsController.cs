@@ -14,6 +14,7 @@ namespace BugTracker.Controllers
     public class ChatNotificationsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+       
 
         // GET: ChatNotifications
         public ActionResult Index()
