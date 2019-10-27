@@ -22,7 +22,7 @@ namespace BugTracker.Helper
         {
             var userId = HttpContext.Current.User.Identity.GetUserId();
             CurrentUser = db.Users.Find(userId);
-            CurrentRole = roleHelper.ListUserRoles(CurrentUser.Id).FirstOrDefault();
+            //CurrentRole = roleHelper.ListUserRoles(CurrentUser.Id).FirstOrDefault();
         }
     }
 }

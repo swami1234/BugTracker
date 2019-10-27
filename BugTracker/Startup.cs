@@ -1,4 +1,6 @@
-﻿using Microsoft.Owin;
+﻿using BugTracker.Signalr.hubs;
+using Microsoft.AspNet.SignalR;
+using Microsoft.Owin;
 using Owin;
 
 
@@ -9,9 +11,16 @@ namespace BugTracker
     {
         public void Configuration(IAppBuilder app)
         {
+          
             ConfigureAuth(app);
+
             app.MapSignalR();
+
            
         }
     }
 }
+
+
+
+

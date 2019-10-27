@@ -1,4 +1,6 @@
 ﻿using BugTracker.Models;
+
+using BugTracker.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,14 +37,32 @@ namespace BugTracker.Controllers
 
         public ActionResult Dashboard()
         {
-            ViewBag.Message = "Your contact page.";
+            //var users = db.Users.Select(u => new UserProfileViewModel
+            //{
+            //    Id = u.Id,
+            //    FirstName = u.FirstName,
+            //    LastName = u.LastName,
+            //    DisplayName = u.DisplayName,
+            //    AvatarUrl = u.AvatarUrl,
+            //    Email = u.Email
+            //}).ToList();
 
+            //ViewBag.Users = new MultiSelectList(db.Users.ToList(), "Id", "FullNameWithEmail");
+
+            ////@Html.ViewBag.Users;
+            //return View(users);
             return View();
         }
+
+        [Authorize]
         public ActionResult Chat()
         {
-            return View();
+          
+
+            return View(); 
         }
+
+       
 
         public ActionResult Contact()
         {

@@ -1,87 +1,190 @@
-﻿@using BugTracker.Models
-@using Microsoft.AspNet.Identity
-@using BugTracker.Helper
-@using BugTracker.ViewModels
-@using BugTracker.Controllers
-@{
-    /**/
-
+﻿@{
     ViewBag.Title = "Chat";
 }
-@{
-    var userId = User.Identity.GetUserId();
-
-    var db = new ApplicationDbContext();
-
-    var user = db.Users.Find(userId);
-
-    var roleHelper = new UserRolesHelper();
-
-    var projhelper = new ProjectsHelper();
-
-    var listuser = db.Users.Find(userId);
-
-
-}
-
 <h2>Chat</h2>
-<div class="container">
-    <input type="text" id="message" />
-    <input type="button" id="sendmessage" value="Send" />
-    <input type="hidden" id="displayname" />
-    <ul id="discussion"></ul>
+
+
+
+<style>
+    .panel-group .panel-col-pink .panel-title {
+        background: rgb(233,32,99);
+        background: linear-gradient(184deg, rgba(233,32,99,1) 0%, rgba(0,128,128,1) 100%);
+</style>
+
+
+<div class=" row clearfix">
+    <div class="col-lg-12 col-md-3 col-sm-6 col-xs-12">
+        <div class="body">
+            <div class="row clearfix">
+                <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+                    <div class="panel-group" id="accordion_9" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-col-pink">
+                            <div class="panel-heading" role="tab" id="headingOne_9">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion_9" href="#collapseOne_9" aria-expanded="true" aria-controls="collapseOne_9">
+                                        CHAT  @DayOfWeek.Thursday @DateTime.Now
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne_9" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne_9">
+                                <div class="panel-body">
+                                    <div class="body table-responsive">
+
+
+
+                                        <div class="content">
+                                            <div class="text"><h4>START CHAT</h4></div>
+                                            <div class=" container-fluid">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <select id="Options"></select>
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                @Html.TextArea("MessageBody")
+                                                <br />
+                                                <br />
+                                                <div class=" row">
+                                                    <div class="col-md-12">
+                                                        <input type="button" class="btn bg-pink" id="btnSend" value="Send" />
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
 </div>
 
 
+<br />
+
+<div class=" row clearfix">
+    <div class="col-lg-12 col-md-3 col-sm-6 col-xs-12">
+        <div class="body">
+            <div class="row clearfix">
+                <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+                    <div class="panel-group" id="accordion_9" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-col-pink">
+                            <div class="panel-heading" role="tab" id="headingOne_9">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion_9" href="#collapseOne_9" aria-expanded="true" aria-controls="collapseOne_9">
+                                        CHAT MESSAGES
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne_9" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne_9">
+                                <div class="panel-body">
+                                    <div class="body table-responsive">
 
 
-@section scripts {
-    <!--Script references. -->
-    <!--The jQuery library is required and is referenced by default in _Layout.cshtml. -->
-    <!--Reference the SignalR library. -->
-    <script src="~/Scripts/jquery.signalR-2.4.1.min.js"></script>
-    <!--Reference the autogenerated SignalR hub script. -->
-    <script src="~/signalr/hubs"></script>
-    <!--SignalR script to update the chat page and send messages.-->
+
+                                        <div class="content">
+                                            <div class="text"><h4>MESSAGES</h4></div>
+                                            <div class=" container-fluid">
+                                                <input type="hidden" id="displayname" />
+                                                <ul id="lstMessages"></ul>
+
+                                            </div>
+
+                                        </div>
 
 
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+@section scripts{
 
     <script>
 
         $(function () {
-            // Reference the auto-generated proxy for the hub.
+
+            // Declare a proxy to reference the hub.
             var chat = $.connection.chatHub;
-            // Create a function that the hub can call back to display messages.
-            chat.client.addNewMessageToPage = function (name, message) {
+
+            //---------------------------------------------------------------
+            //This is a callback method triggered from the Server
+            //---------------------------------------------------------------
+            chat.client.broadcastMessage = function (name, message) {
+                // Html encode display name and message.
+                var encodedName = $('<div />').text(name).html();
+                var encodedMsg = $('<div />').text(message).html();
+
                 // Add the message to the page.
-                $('#discussion').append('<li><strong>' + htmlEncode(name)
-                    + '</strong>: ' + htmlEncode(message) + '</li>');
+                $('#lstMessages').append('<li><strong>' + encodedName
+                    + '</strong>:&nbsp;&nbsp;' + encodedMsg + '</li>');
             };
-            // Get the user name and store it to prepend to messages.
-            $('#displayname').val(prompt('Your Role:', 'My Role : @roleHelper.ListUserRoles(user.Id).FirstOrDefault()-"@user.FirstName"-@user.Email'));
-            //$('#displayname').val(prompt('Enter your name:', ''));
-            // Set initial focus to message input box.
-            $('#message').focus();
-            // Start the connection.
-            $.connection.hub.start().done(function () {
-                $('#sendmessage').click(function () {
-                    // Call the Send method on the hub.
-                    chat.server.send($('#displayname').val(), $('#message').val());
-                    // Clear text box and reset focus for next comment.
-                    $('#message').val('').focus();
+            chat.client.addChatMessage = function (name, message) {
+                var encodedName = $('<div />').text(name).html();
+                var encodedMsg = $('<div />').text(message).html();
+                $('#lstMessages').append(`<li><strong>${encodedName}</strong>: ${encodedMsg}</li>`);
+            };
+            chat.client.LoadConnectedUsers = function (connectedUsers) {
+                let dropdown = $('#Options');
+                dropdown.empty();
+                dropdown.append('<option selected="true" disabled>-- Select User --</option>');
+                dropdown.prop('selectedIndex', 0);
+
+                $.each(connectedUsers, function (key, value) {
+                    dropdown.append($('<option></option>').text(value));
                 });
+            }
+
+            $.connection.hub.start().done(function () {
+
+                chat.server.getConnectedUsers(); //(1) gets users and gets that info to servers
+
+                $("#Options").focus(function () {
+                    chat.server.getConnectedUsers();
+                });
+
+                $('#btnSend').on("click", function () {
+                    var msg = $('#MessageBody').val();
+                    var target = $("#Options").find(":selected").text();
+                    if (target == "-- Select User --")
+                        chat.server.send(msg);
+                    else
+                        chat.server.sendUser(target, msg);
+
+                    $('#MessageBody').val('');
+                });
+
             });
+
         });
-        // This optional function html-encodes messages for display in the page.
-        function htmlEncode(value) {
-            var encodedValue = $('<div />').text(value).html();
-            return encodedValue;
-
-
-        }
-
-
     </script>
-
 
 }

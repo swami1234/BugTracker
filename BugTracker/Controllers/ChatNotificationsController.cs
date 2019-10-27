@@ -8,14 +8,25 @@ using System.Web;
 using System.Web.Mvc;
 using BugTracker.Helper;
 using BugTracker.Models;
+using BugTracker.Signalr.hubs;
+using Microsoft.AspNet.SignalR;
 
 namespace BugTracker.Controllers
 {
     public class ChatNotificationsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-       
+        //private IHubContext<ChatHub> hubContext;
+        public ApplicationDbContext _context { get; }
 
+        private IHubContext<ChatHub> _hubContext;
+
+        public ChatNotificationsController(ApplicationDbContext context, IHubContext<ChatHub> hubContext)
+        {
+            _context = context;
+            _hubContext = hubContext;
+        }
+        
         // GET: ChatNotifications
         public ActionResult Index()
         {
@@ -61,7 +72,7 @@ namespace BugTracker.Controllers
                 db.SaveChanges();
 
                 
-                ChatNotificationHelper.ChatNotify(chatNotification);
+                //ChatNotificationHelper.ChatNotify(chatNotification);
 
                 return RedirectToAction("Index");
             }

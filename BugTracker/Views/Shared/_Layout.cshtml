@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-   
+
     <title>WELCOME TO MY BUG-TRACKER PROJECT</title>
     <!-- Favicon-->
     <link rel="icon" href="~/favicon.ico" type="image/x-icon">
@@ -62,12 +62,22 @@
     <a href="~/fonts/Roboto-Thin.woff"></a>
 
     @{
+        /**/
+
         var userId = User.Identity.GetUserId();
 
         var db = new ApplicationDbContext();
 
         var user = db.Users.Find(userId);
     }
+
+
+    <style>
+        .sidebar .user-info {
+            background: rgb(233,32,99);
+            background: linear-gradient(184deg, rgba(233,32,99,1) 0%, rgba(0,128,128,1) 100%);
+        }
+    </style>
 </head>
 <body class="theme-pink">
     <!-- Page Loader -->
@@ -111,58 +121,7 @@
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Notifications -->
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                            <i class="material-icons">notifications</i>
-                            <span class="label-count">Chat:@NotificationHelper.GetAllUserChatNotificationCount()</span>
-
-                        </a>
-                        <ul class="dropdown-menu">
-
-                            <li class="header">CHAT NOTIFICATIONS</li>
-
-                            <li class="body">
-                                <ul class="menu">
-
-                                    @foreach (var chatnotification in NotificationHelper.GetUnreadUserChatNotifications())
-                                    {
-                                        <li>
-
-                                            @using (Html.BeginForm("MarkAsRead", "ChatNotifications"))
-                                            {
-                                                @Html.AntiForgeryToken()
-
-
-
-
-
-
-                                                <div class="menu-info">
-
-
-                                                    <div class=" row">
-                                                        <div class=" col-md-12">
-                                                            @chatnotification.NotificationBody
-                                                        </div>
-                                                    </div>
-                                                    <div class=" row">
-                                                        <div class=" col-md-12">
-                                                            <button type="submit" class=" btn btn-primary">Mark as read</button>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                                <hr />
-                                            }
-                                        </li>
-
-                                    }
-
-                                </ul>
-                            </li>
-
-                        </ul>
-                    </li>
+                 
                     <!-- #END# Notifications -->
                     <!-- Notifications -->
                     <li class="dropdown">
@@ -567,7 +526,7 @@
         @RenderBody()
     </section>
     <!-- Jquery Core Js -->
-    @*<script src="~/Scripts/jquery-3.3.1.js"></script>*@
+
     <script src="~/Scripts/jquery.min.js"></script>
     <!-- Bootstrap Core Js -->
     @*<script src="~/Scripts/custom.min.js"></script>*@
@@ -579,7 +538,7 @@
     <script src="~/Scripts/common-scripts.js"></script>
     <script src="~/Scripts/dropzone.js"></script>
     <script src="~/Scripts/calendar-conf-events.js"></script>
-    <script src="~/Scripts/bootstrap.js"></script>
+
     <!-- Select Plugin Js -->
 
     <script src="~/Scripts/bootstrap-select.js"></script>
@@ -592,7 +551,7 @@
     <!-- Custom Js -->
 
 
-    <script src="~/Scripts/jquery.slimscroll.js"></script>
+
 
 
     <script src="~/Scripts/jquery.dataTables.js"></script>
@@ -629,8 +588,11 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
+    <script src="~/Scripts/zabuto_calendar.js"></script>
 
+    <script src="~/Scripts/jquery.signalR-2.4.1.min.js"></script>
 
+    <script src="~/signalr/hubs"></script>
 
 
 
@@ -730,14 +692,14 @@
     </script>
     <script>
         //bar
-        $.post("@Url.Action("GetRealChartData","Charts")").then(function (response) {
-            var ctxB = document.getElementById("barChart").getContext('2d');
+        $.post("@Url.Action("GetRealChartData123", "Charts")").then(function (response) {
+            var ctxB = document.getElementById("barChart9").getContext('2d');
             var myBarChart = new Chart(ctxB, {
                 type: 'bar',
                 data: {
                     labels: response.Labels,
                     datasets: [{
-                        label: 'Tickets Status',
+                        label: 'Tickets Priority',
                         data: response.Values,
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
@@ -773,9 +735,9 @@
 
 
     </script>
-    <script>
+    @*<script>
         <a class="rotate-btn" data-card="#card-1"><i class="fas fa-redo-alt"></i> Click here to rotate</a>
-    </script>
+    </script>*@
     <script>
         $('#WELCOME TO MY BUG TRACKER PROJECT').addClass('animated bounceOutLeft');
     </script>
@@ -866,8 +828,51 @@
         });
     </script>
 
+    <script>
+        //bar
+        $.post("@Url.Action("GetRealChartData","Charts")").then(function (response) {
+            var ctxB = document.getElementById("barChart").getContext('2d');
+            var myBarChart = new Chart(ctxB, {
+                type: 'bar',
+                data: {
+                    labels: response.Labels,
+                    datasets: [{
+                        label: 'Tickets Status',
+                        data: response.Values,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+        });
 
 
+    </script>
 
 
     @RenderSection("scripts", required: false)

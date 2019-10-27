@@ -194,6 +194,51 @@ namespace BugTracker.Controllers
 
         }
 
+        public JsonResult GetRealChartData123()
+        {
+            var data = new ChartJsBarData();
+
+            var userId = User.Identity.GetUserId();//First Get the Id of the logged in user
+
+            var myRole = roleHelper.ListUserRoles(userId).FirstOrDefault(); //then get the roles they occupy
+                                                                            //firstordefault Returns the first                   element of a sequence, or a default value if no element is found
+
+            var myTickets = new List<Ticket>();
+
+            switch (myRole)//then based on the role name - push different data into the view
+            {
+                case "Developer":
+                    myTickets = db.Tickets.Where(t => t.AssignedToUserId == userId).ToList();
+                    break;
+
+                case "Submitter":
+                    myTickets = db.Tickets.Where(t => t.OwnerUserId == userId).ToList();
+                    break;
+
+                case "Project Manager":
+                    myTickets = db.Users.Find(userId).Projects.SelectMany(t => t.Tickets).ToList();
+                    break;
+
+            }
+
+            foreach (var priority in db.TicketPriorities)
+            {
+                data.Labels.Add(priority.Name);
+                data.Values.Add(myTickets.Where(t => t.TicketPriorityId == priority.Id).Count());
+            }
+
+            //foreach (var ticket in myTickets)
+            //{
+            //    var value = db.TicketPriorities.Where(t => t.Name)
+
+            //    data.Labels.Add(ticket.TicketPriority.Name);
+
+            //    data.Values.Add(value);
+            //}
+            return Json(data);
+
+
+        }
     }
 }
 

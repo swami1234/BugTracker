@@ -1,5 +1,7 @@
 ﻿using BugTracker.Models;
+using BugTracker.Signalr.hubs;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,7 @@ namespace BugTracker.Helper
 {
     public class ChatNotificationHelper : CommonHelper
     {
+       
 
         public static void  GenerateNewChatNotification(ChatNotification chatnotification)
         {
@@ -22,9 +25,12 @@ namespace BugTracker.Helper
                 NotificationBody = $"Mark Read, if you have read this notification",
                 ChatId = chatnotification.ChatId
             };
+
+
             db.ChatNotifications.Add(notification);
             db.SaveChanges();
 
+            
         }
 
         public static void ChatNotify(ChatNotification chatnotification)
@@ -55,7 +61,7 @@ namespace BugTracker.Helper
 
             }
 
-
+            
 
         }
     }
