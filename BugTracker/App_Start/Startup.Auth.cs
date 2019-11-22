@@ -59,14 +59,14 @@ namespace BugTracker
 
             app.UseLinkedInAuthentication(new LinkedInAuthenticationOptions()
             {
-                ClientId = "789740atggzmio",
-                ClientSecret = "0uMOlqtslnRGkmQl"
+                ClientId = "78r91j4u5mplet",
+                ClientSecret = "5vUZFUAEbb0YzdRP"
             });
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "768303873656-72dn811th5m9smeuv4ek07p3010g4ebt.apps.googleusercontent.com",
-                ClientSecret = "-MDzOW2WA7VPffDX0YypV-41"
+                ClientId = "149650853824-at600v6p4gsvepkevor25hpr8qg2he4h.apps.googleusercontent.com",
+                ClientSecret = "2G2QKfFVU7y_MdGQ3j86bXIc"
             });
 
           

@@ -1,7 +1,9 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+
 
 namespace BugTracker.Signalr
 {
@@ -23,6 +25,7 @@ namespace BugTracker.Signalr
             {
                 HashSet<string> connections;
                 if (!_connections.TryGetValue(key, out connections))
+
                 {
                     connections = new HashSet<string>();
                     _connections.Add(key, connections);

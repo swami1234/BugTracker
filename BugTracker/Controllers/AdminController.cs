@@ -81,6 +81,7 @@ namespace BugTracker.Controllers
 
             ViewBag.UserId = userId;
 
+
             ViewBag.UserProject = new SelectList(db.Projects.ToList(), "Id", "Name", currentProject.Id);
 
 

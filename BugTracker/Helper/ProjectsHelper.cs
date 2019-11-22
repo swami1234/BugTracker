@@ -67,6 +67,7 @@ namespace BugTracker.Helper
                 db.Entry(proj).State = EntityState.Modified; // just saves this obj instance.
                 db.SaveChanges();
             }
+
         }
         public ICollection<ApplicationUser> UsersOnProject(int projectId)
         {

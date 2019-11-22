@@ -79,11 +79,18 @@
     <nav class="navbar">
         <div class="container-fluid">
             <div class="navbar-header">
+                <div class="row">
+                    <div class=" col-md-6">
+                        <img src="~/Images/myperfectlogo.png" style="width: 50px;" class="animated bounce delay-5s" alt="My Bug Tracker" id="animated-img1">
+                    </div>
+                    <div class=" col-md-pull-4 col-md-6">
+                        <a class="navbar-brand" href="~/index.html">WELCOME TO MY BUG-TRACKER PROJECT</a>
+                    </div>
+                </div>
 
-
-                <a class="navbar-brand" href="../../index.html">WELCOME TO MY BUG TRACKER PROJECT</a>
             </div>
-            
+
+
         </div>
     </nav>
     </br>
@@ -97,7 +104,7 @@
             <h2>Login as Demo-Users</h2>
         </div>
     </div>
-    
+
     <div class=" container-fluid">
         <div class="row clearfix">
             <div class="col-md-3 ">
@@ -106,12 +113,12 @@
                         <h2>
                             Admin <small>Login as a Admin</small>
                         </h2>
-                      
+
                     </div>
                     <div class="body">
                         Admin can assign or unassign users to and from roles. Admin can create new project. Admin can access any Projects or any Tickets
                     </div>
-                    
+
                     <div class="form-group">
                         <div class=" col-md-12 text-center">
                             <input type="submit" value="Login" class="btn btn-danger" />
@@ -125,18 +132,18 @@
                         <h2>
                             Project Manager <small>Login as a Project Manager</small>
                         </h2>
-                       
+
                     </div>
                     <div class="body">
                         Project Manager works on the tickets they are assigned to.They are able to assign developers to their project tickets
                     </div>
-                    <hr/>
+                    <hr />
                     <div class="row form-group">
                         <div class=" col-md-12 text-center">
                             <input type="submit" value="Login" class="btn btn-primary" />
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
             <div class="col-md-3">
@@ -145,7 +152,7 @@
                         <h2>
                             Developer <small>Login as developer</small>
                         </h2>
-                      
+
                     </div>
                     <div class="body">
                         Developers are able to view projects and tickets they are assigned to. So they can fix the Tickets they are assigned to.
@@ -157,58 +164,58 @@
                     </div>
                 </div>
             </div>
-            
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="header bg-orange">
-                            <h2>
-                                Submitter<small>Login as a Submitter</small>
-                            </h2>
-                           
-                        </div>
-                        <div class="body">
-                            Submitters are able to create tickets for the projects they are assigned to. But they are not able to assign tickets
-                        </div>
-                        <div class="row form-group">
-                            <div class=" col-md-12 text-center">
-                                <input type="submit" value="Login" class="btn btn-deep-orange" />
-                            </div>
+
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="header bg-orange">
+                        <h2>
+                            Submitter<small>Login as a Submitter</small>
+                        </h2>
+
+                    </div>
+                    <div class="body">
+                        Submitters are able to create tickets for the projects they are assigned to. But they are not able to assign tickets
+                    </div>
+                    <div class="row form-group">
+                        <div class=" col-md-12 text-center">
+                            <input type="submit" value="Login" class="btn btn-deep-orange" />
                         </div>
                     </div>
-                   
                 </div>
-            
-           
+
+            </div>
+
+
         </div>
         <div class=" row">
             <div class=" col-md-12 text-success h3">
                 @Html.ActionLink("Back to Login page", "Login", "Home")
             </div>
         </div>
-</div>
+    </div>
 
-        <!-- Section: Pricing v.1 -->
-        <!-- Jquery Core Js -->
+    <!-- Section: Pricing v.1 -->
+    <!-- Jquery Core Js -->
 
-        <script src="~/Scripts/jquery.min.js"></script>
-        <!-- Bootstrap Core Js -->
+    <script src="~/Scripts/jquery.min.js"></script>
+    <!-- Bootstrap Core Js -->
 
 
-        <script src="~/Scripts/bootstrap.js"></script>
-        <!-- Select Plugin Js -->
+    <script src="~/Scripts/bootstrap.js"></script>
+    <!-- Select Plugin Js -->
 
-        <script src="~/Scripts/bootstrap-select.js"></script>
-        <!-- Slimscroll Plugin Js -->
+    <script src="~/Scripts/bootstrap-select.js"></script>
+    <!-- Slimscroll Plugin Js -->
 
-        <script src="~/Scripts/jquery.slimscroll.js"></script>
-        <!-- Waves Effect Plugin Js -->
+    <script src="~/Scripts/jquery.slimscroll.js"></script>
+    <!-- Waves Effect Plugin Js -->
 
-        <script src="~/Scripts/waves.js"></script>
-        <!-- Custom Js -->
+    <script src="~/Scripts/waves.js"></script>
+    <!-- Custom Js -->
 
-        <script src="~/Scripts/admin.js"></script>
-        <!-- Demo Js -->
+    <script src="~/Scripts/admin.js"></script>
+    <!-- Demo Js -->
 
-        <script src="~/Scripts/demo.js"></script>
+    <script src="~/Scripts/demo.js"></script>
 </body>
 </html>
